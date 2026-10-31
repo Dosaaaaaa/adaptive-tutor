@@ -1,0 +1,10 @@
+Answer these multiple-choice questions using ONLY the study notes below. For each question choose the single
+option that the notes support.
+
+Return ONLY this JSON: {"answers": [{"id": "C1-recall-1", "choice": "A"}]}
+
+NOTES:
+{{DOC}}
+
+QUESTIONS:
+{{INPUT}}

@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "C1-recall-1",
+    "concept_id": "C1",
+    "kind": "recall",
+    "round": 1,
+    "stem": "What does the electric current in a wire tell you?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The total number of electrons in the wire",
+        "tag": "M1.1"
+      },
+      {
+        "key": "B",
+        "text": "The energy carried by each coulomb of charge",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "The amount of charge stored in the wire",
+        "tag": "M1.1"
+      },
+      {
+        "key": "D",
+        "text": "Charge passing a point each second",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "Current is the rate of flow of charge: the charge that passes a point each second.",
+    "evidence": {
+      "page": 1,
+      "quote": "Current is the rate of flow of charge. It is the amount of charge that passes a point in a circuit each second."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C1-recall-2",
+    "concept_id": "C1",
+    "kind": "recall",
+    "round": 1,
+    "stem": "How must an ammeter be connected into a circuit?",
+    "options": [
+      {
+        "key": "A",
+        "text": "On a separate wire outside the loop",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "In parallel, across the component",
+        "tag": "M1.2"
+      },
+      {
+        "key": "C",
+        "text": "In parallel with the cell only",
+        "tag": "M1.2"
+      },
+      {
+        "key": "D",
+        "text": "In series with the component",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "An ammeter is connected in series so that all of the current flows through it.",
+    "evidence": {
+      "page": 1,
+      "quote": "An ammeter must be connected in series with the component, so that all of the current flows through it."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C1-apply-1",
+    "concept_id": "C1",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A wire carries a current of 2 A. How much charge passes a point in the wire in 5 s?",
+    "options": [
+      {
+        "key": "A",
+        "text": "0.4 C",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "10 C",
+        "tag": "correct"
+      },
+      {
+        "key": "C",
+        "text": "2 C",
+        "tag": "M1.1"
+      },
+      {
+        "key": "D",
+        "text": "7 C",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "B",
+    "rationale": "Q = I × t = 2 × 5 = 10 C.",
+    "evidence": {
+      "page": 1,
+      "quote": "It can be rearranged as Q = I × t."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C1-apply-2",
+    "concept_id": "C1",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A cell is joined to a bulb by one wire only. The other terminal of the bulb is not connected to anything. What happens to the current?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Current flows in the wire but not through the bulb",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "A small current flows, because the wire touches the cell",
+        "tag": "M1.3"
+      },
+      {
+        "key": "C",
+        "text": "There is no current, because the circuit is not complete",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "The bulb still lights, because it uses the current that arrives",
+        "tag": "M1.3"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "Current flows only in a complete circuit, so a break stops the current in the whole loop.",
+    "evidence": {
+      "page": 1,
+      "quote": "Current flows only in a complete circuit. A break anywhere in the loop stops the current in the whole loop."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C1-tiebreak-1",
+    "concept_id": "C1",
+    "kind": "tiebreak",
+    "round": 3,
+    "stem": "What does a current of 3 A mean?",
+    "options": [
+      {
+        "key": "A",
+        "text": "3 coulombs of charge are stored in the wire",
+        "tag": "M1.1"
+      },
+      {
+        "key": "B",
+        "text": "3 joules of energy are given to each coulomb",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "3 electrons pass a point every second",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "3 C of charge passes a point each second",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "A current of 3 A means 3 coulombs of charge pass a point every second.",
+    "evidence": {
+      "page": 1,
+      "quote": "A current of one ampere means that one coulomb of charge passes a point every second. A current of 2 A means that 2 coulombs pass a point every second."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C1-simple-1",
+    "concept_id": "C1",
+    "kind": "simple",
+    "round": 3,
+    "stem": "Which quantity does an ammeter measure?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Potential difference",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "Resistance",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "Charge",
+        "tag": "M1.1"
+      },
+      {
+        "key": "D",
+        "text": "Current",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "An ammeter measures current.",
+    "evidence": {
+      "page": 1,
+      "quote": "Current is measured with an ammeter."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C2-recall-1",
+    "concept_id": "C2",
+    "kind": "recall",
+    "round": 1,
+    "stem": "What is potential difference between two points?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The opposition of a component to current",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "The amount of charge passing each second",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "Energy per coulomb of charge",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "The total energy stored in the cell",
+        "tag": "M2.3"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "Potential difference is the energy transferred to or from each coulomb of charge as it moves between the points.",
+    "evidence": {
+      "page": 2,
+      "quote": "Potential difference (voltage) between two points is the energy transferred to or from each coulomb of charge as it moves between those points."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C2-recall-2",
+    "concept_id": "C2",
+    "kind": "recall",
+    "round": 1,
+    "stem": "How must a voltmeter be connected to measure the potential difference across a component?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Anywhere, because position does not matter",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "In series, on the wire leaving the cell",
+        "tag": "M2.2"
+      },
+      {
+        "key": "C",
+        "text": "In series with the component",
+        "tag": "M2.2"
+      },
+      {
+        "key": "D",
+        "text": "In parallel, across the component",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "A voltmeter is connected in parallel, across the component being measured.",
+    "evidence": {
+      "page": 2,
+      "quote": "A voltmeter must be connected in parallel, across the component being measured."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C2-apply-1",
+    "concept_id": "C2",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A 12 V cell moves 3 C of charge through a circuit. How much energy does the cell transfer to the charge?",
+    "options": [
+      {
+        "key": "A",
+        "text": "12 J",
+        "tag": "M2.3"
+      },
+      {
+        "key": "B",
+        "text": "4 J",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "15 J",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "36 J",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "W = V × Q = 12 × 3 = 36 J.",
+    "evidence": {
+      "page": 2,
+      "quote": "It can be rearranged as W = V × Q."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C2-apply-2",
+    "concept_id": "C2",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A student says that a potential difference of 6 V flows along the wire from one point to another. What is wrong with this?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The energy should flow, not the potential difference",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "Nothing is wrong, because potential difference flows round the circuit like current",
+        "tag": "M2.1"
+      },
+      {
+        "key": "C",
+        "text": "Potential difference is the push between two points, and the charge is what flows",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "Nothing is wrong, but the 6 V is used up along the wire",
+        "tag": "M2.1"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "Potential difference is measured between two points and does not flow. The charge flows, pushed by it.",
+    "evidence": {
+      "page": 2,
+      "quote": "It does not flow through a wire. The charge flows, and the potential difference is the push that makes it flow."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C2-tiebreak-1",
+    "concept_id": "C2",
+    "kind": "tiebreak",
+    "round": 3,
+    "stem": "A bulb transfers 48 J of energy while 8 C of charge passes through it. What is the potential difference across the bulb?",
+    "options": [
+      {
+        "key": "A",
+        "text": "384 V",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "48 V",
+        "tag": "M2.3"
+      },
+      {
+        "key": "C",
+        "text": "6 V",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "40 V",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "V = W / Q = 48 / 8 = 6 V.",
+    "evidence": {
+      "page": 2,
+      "quote": "The formula is V = W / Q, where V is the potential difference in volts (V), W is the energy in joules (J) and Q is the charge in coulombs (C)."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C2-simple-1",
+    "concept_id": "C2",
+    "kind": "simple",
+    "round": 3,
+    "stem": "Which part of a simple circuit gives energy to the charge?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The wire",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "The cell",
+        "tag": "correct"
+      },
+      {
+        "key": "C",
+        "text": "The voltmeter",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "The bulb",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "B",
+    "rationale": "A cell transfers energy to the charge.",
+    "evidence": {
+      "page": 2,
+      "quote": "A cell transfers energy to the charge."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C3-recall-1",
+    "concept_id": "C3",
+    "kind": "recall",
+    "round": 1,
+    "stem": "Two wires are made of the same material and have the same length. Which has the smaller resistance?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It depends only on the current",
+        "tag": "M3.3"
+      },
+      {
+        "key": "B",
+        "text": "The thinner wire",
+        "tag": "M3.1"
+      },
+      {
+        "key": "C",
+        "text": "The thicker wire",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "They have the same resistance",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "A thicker wire has a smaller resistance than a thinner wire of the same material and length.",
+    "evidence": {
+      "page": 3,
+      "quote": "A thicker wire has a smaller resistance than a thinner wire of the same material and length."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C3-recall-2",
+    "concept_id": "C3",
+    "kind": "recall",
+    "round": 1,
+    "stem": "What happens to the resistance of a metal wire when the wire gets hotter?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It rises",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "It stays the same",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "It falls",
+        "tag": "M3.2"
+      },
+      {
+        "key": "D",
+        "text": "It drops to zero",
+        "tag": "M3.2"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "A hotter metal wire has a higher resistance: the atoms vibrate more and collide with more of the moving charge.",
+    "evidence": {
+      "page": 3,
+      "quote": "The resistance of a metal wire rises when the wire gets hotter, because the atoms vibrate more and collide with more of the moving charge."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C3-apply-1",
+    "concept_id": "C3",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A wire has a resistance of 12 Ω. A second wire has the same material and length but twice the cross-sectional area. What is the resistance of the second wire?",
+    "options": [
+      {
+        "key": "A",
+        "text": "12 Ω",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "10 Ω",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "6 Ω",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "24 Ω",
+        "tag": "M3.1"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "Doubling the cross-sectional area halves the resistance: 12 / 2 = 6 Ω.",
+    "evidence": {
+      "page": 3,
+      "quote": "If the cross-sectional area is doubled, the resistance is halved."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C3-apply-2",
+    "concept_id": "C3",
+    "kind": "apply",
+    "round": 2,
+    "stem": "The potential difference across a metal wire at constant temperature is doubled. What happens to the resistance of the wire?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It halves",
+        "tag": "M3.3"
+      },
+      {
+        "key": "B",
+        "text": "It doubles",
+        "tag": "M3.3"
+      },
+      {
+        "key": "C",
+        "text": "It stays the same",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "It falls to zero as the charge speeds up",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "At constant temperature the resistance of a metal wire stays the same whatever the potential difference.",
+    "evidence": {
+      "page": 3,
+      "quote": "For a metal wire at constant temperature, the resistance stays the same whatever the potential difference across it or the current through it."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C3-tiebreak-1",
+    "concept_id": "C3",
+    "kind": "tiebreak",
+    "round": 3,
+    "stem": "Wire Q has the same material and thickness as wire P, but wire Q is twice as long. How do their resistances compare?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Wire Q has twice the resistance of wire P",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "The two wires have the same resistance",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "Wire Q has less resistance, because it is longer",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "Wire Q has half the resistance of wire P",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "If the length is doubled, the resistance is doubled.",
+    "evidence": {
+      "page": 3,
+      "quote": "If the length is doubled, the resistance is doubled."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C3-simple-1",
+    "concept_id": "C3",
+    "kind": "simple",
+    "round": 3,
+    "stem": "Which material is used for connecting wires because it has a low resistance?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Nichrome",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "Copper",
+        "tag": "correct"
+      },
+      {
+        "key": "C",
+        "text": "Steel",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "Rubber",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "B",
+    "rationale": "Copper has a low resistance, so it is used for connecting wires.",
+    "evidence": {
+      "page": 3,
+      "quote": "Copper has a low resistance, so it is used for connecting wires."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C4-recall-1",
+    "concept_id": "C4",
+    "kind": "recall",
+    "round": 1,
+    "stem": "The resistance in a circuit stays constant and the potential difference is doubled. What happens to the current?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It doubles",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "It halves",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "It is multiplied by four",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "It stays the same",
+        "tag": "M4.2"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "When the resistance stays constant, doubling the potential difference doubles the current.",
+    "evidence": {
+      "page": 4,
+      "quote": "When the resistance stays constant, doubling the potential difference doubles the current."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C4-recall-2",
+    "concept_id": "C4",
+    "kind": "recall",
+    "round": 1,
+    "stem": "What is the shape of the current against potential difference graph for a filament bulb?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A vertical line",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "A straight line through the origin",
+        "tag": "M4.3"
+      },
+      {
+        "key": "C",
+        "text": "A horizontal line",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "A curve",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "The graph for a filament bulb is a curve because the filament gets hot and its resistance rises.",
+    "evidence": {
+      "page": 4,
+      "quote": "The graph for a filament bulb is a curve, because the filament gets hot and its resistance rises as the current increases."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C4-apply-1",
+    "concept_id": "C4",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A 24 V supply is connected across an 8 Ω resistor. What current flows?",
+    "options": [
+      {
+        "key": "A",
+        "text": "192 A",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "0.33 A",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "16 A",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "3 A",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "I = V / R = 24 / 8 = 3 A.",
+    "evidence": {
+      "page": 4,
+      "quote": "The law can be rearranged as I = V / R and as R = V / I."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C4-apply-2",
+    "concept_id": "C4",
+    "kind": "apply",
+    "round": 2,
+    "stem": "The potential difference across a resistor stays at 6 V, and the resistor is replaced by one with twice the resistance. What happens to the current?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It is multiplied by four",
+        "tag": "M4.1"
+      },
+      {
+        "key": "B",
+        "text": "It halves",
+        "tag": "correct"
+      },
+      {
+        "key": "C",
+        "text": "It stays the same",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "It doubles",
+        "tag": "M4.1"
+      }
+    ],
+    "answer_key": "B",
+    "rationale": "When the potential difference stays constant, doubling the resistance halves the current.",
+    "evidence": {
+      "page": 4,
+      "quote": "When the potential difference stays constant, doubling the resistance halves the current."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C4-tiebreak-1",
+    "concept_id": "C4",
+    "kind": "tiebreak",
+    "round": 3,
+    "stem": "Which equation is Ohm’s law?",
+    "options": [
+      {
+        "key": "A",
+        "text": "V = I / R",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "R = I / V",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "I = V × R",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "V = I × R",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "Ohm’s law states that V = I × R.",
+    "evidence": {
+      "page": 4,
+      "quote": "Ohm’s law states that V = I × R, where V is the potential difference in volts, I is the current in amperes and R is the resistance in ohms."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C4-simple-1",
+    "concept_id": "C4",
+    "kind": "simple",
+    "round": 3,
+    "stem": "To find a current using Ohm’s law, which two quantities must you know?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The potential difference and the charge",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "The resistance and the energy",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "Only the resistance of the circuit",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "Potential difference and resistance",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "To find any one of V, I or R, you must know the other two.",
+    "evidence": {
+      "page": 4,
+      "quote": "To find any one of V, I or R, you must know the other two."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C5-recall-1",
+    "concept_id": "C5",
+    "kind": "recall",
+    "round": 1,
+    "stem": "A student places ammeters before, between and after two bulbs connected in series. How do the three readings compare?",
+    "options": [
+      {
+        "key": "A",
+        "text": "They are the same only if the bulbs are identical",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "The middle reading is half of the first reading",
+        "tag": "M5.2"
+      },
+      {
+        "key": "C",
+        "text": "All three readings are the same",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "The first reading is the largest and the last is the smallest",
+        "tag": "M5.1"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "The current is the same at every point in a series circuit.",
+    "evidence": {
+      "page": 5,
+      "quote": "An ammeter placed before, between or after the components of a series circuit shows the same reading."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C5-recall-2",
+    "concept_id": "C5",
+    "kind": "recall",
+    "round": 1,
+    "stem": "How is the total resistance of resistors in series found?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Add the individual resistances",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "Take the largest of the individual resistances",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "Take the smallest of the individual resistances",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "Multiply the individual resistances together",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "The total resistance in series is the sum of the individual resistances.",
+    "evidence": {
+      "page": 5,
+      "quote": "The total resistance of components in series is the sum of their resistances: R total = R1 + R2 + R3."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C5-apply-1",
+    "concept_id": "C5",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A 10 V cell is connected in series with a 2 Ω resistor and a 3 Ω resistor. What is the potential difference across the 3 Ω resistor?",
+    "options": [
+      {
+        "key": "A",
+        "text": "6 V",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "4 V",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "5 V",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "10 V",
+        "tag": "M5.3"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "R total = 5 Ω, I = 10 / 5 = 2 A, so the potential difference across the 3 Ω resistor is 2 × 3 = 6 V.",
+    "evidence": {
+      "page": 5,
+      "quote": "The total resistance of components in series is the sum of their resistances: R total = R1 + R2 + R3."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C5-apply-2",
+    "concept_id": "C5",
+    "kind": "apply",
+    "round": 2,
+    "stem": "Two identical bulbs are connected in series with a 6 V cell. What is the potential difference across each bulb?",
+    "options": [
+      {
+        "key": "A",
+        "text": "6 V",
+        "tag": "M5.3"
+      },
+      {
+        "key": "B",
+        "text": "1.5 V",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "3 V",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "12 V",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "Identical bulbs in series share the potential difference of the cell equally: 6 / 2 = 3 V.",
+    "evidence": {
+      "page": 5,
+      "quote": "Two identical bulbs in series with a cell share the potential difference of the cell equally."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C5-tiebreak-1",
+    "concept_id": "C5",
+    "kind": "tiebreak",
+    "round": 3,
+    "stem": "A third resistor is added in series to a circuit, and the supply stays the same. What happens to the current?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It gets smaller",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "It stays the same",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "It splits into three smaller currents",
+        "tag": "M5.2"
+      },
+      {
+        "key": "D",
+        "text": "It gets larger",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "Adding a resistor in series increases the total resistance, so the current gets smaller.",
+    "evidence": {
+      "page": 5,
+      "quote": "Adding another resistor in series increases the total resistance, so the current in the circuit gets smaller."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  },
+  {
+    "id": "C5-simple-1",
+    "concept_id": "C5",
+    "kind": "simple",
+    "round": 3,
+    "stem": "How many paths are there for the charge in a series circuit?",
+    "options": [
+      {
+        "key": "A",
+        "text": "None",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "Two",
+        "tag": "M5.2"
+      },
+      {
+        "key": "C",
+        "text": "One",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "As many as there are components",
+        "tag": "M5.2"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "In a series circuit there is only one path for the charge.",
+    "evidence": {
+      "page": 5,
+      "quote": "In a series circuit there is only one path for the charge."
+    },
+    "checks": {
+      "grounded": true,
+      "authored_by": "claude",
+      "llm_gates": "not run"
+    }
+  }
+]

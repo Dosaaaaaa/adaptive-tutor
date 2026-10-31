@@ -1,0 +1,41 @@
+# ---- secrets and local state: never commit ----
+.env
+.env.*
+!.env.example
+data/
+.cache/
+exports/
+
+# ---- Python ----
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# ---- Node ----
+node_modules/
+web/dist/
+web/.vite/
+web/coverage/
+*.tsbuildinfo
+
+# ---- third-party tools that sit next to the project (they have their own git history) ----
+/claude-token-optimizer/
+/hallmark/
+/graphify/
+/agent-tutor-skill/
+/claude-frontend-skills/
+
+# ---- quiz banks built from a teacher's own PDFs stay on that computer; the demo banks are committed ----
+bank/exam_*/
+
+# ---- editor, OS, Claude Code local files ----
+.DS_Store
+.idea/
+.vscode/
+.claude/sessions/
+.claude/completions/
+.claude/settings.local.json
+*.bak

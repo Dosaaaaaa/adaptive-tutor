@@ -1,0 +1,19 @@
+You write the common wrong ideas (misconceptions) students hold about ONE concept, for a quiz.
+
+CONCEPT_ID: {{CID}}
+CONCEPT: {{NAME}}: {{SUMMARY}}
+
+Write exactly 3 different misconceptions that a student could plausibly hold about this concept, from reading
+carelessly or from everyday experience.
+
+Return JSON:
+{"misconceptions": [{"statement": "what the student wrongly believes, as that student would say it, one sentence",
+                     "contrast_quote": "one sentence copied exactly from the notes that shows the idea is wrong"}]}
+
+Rules:
+- Every misconception must be CONTRADICTED by a sentence in the notes. contrast_quote is copied exactly, character
+  for character, from the notes.
+- Statements are specific and different from each other. Write each as a belief, not as a question.
+{{FEEDBACK}}
+NOTES:
+{{DOC}}

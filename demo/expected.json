@@ -1,0 +1,45 @@
+{
+  "_note": "Ground truth for testing the pipeline on demo/Electricity_Basics.pdf. The pipeline never reads this file. tutor/eval.py compares its output against it.",
+  "pdf": "Electricity_Basics.pdf",
+  "concepts": [
+    {"id": "C1", "name": "Electric current", "page": 1},
+    {"id": "C2", "name": "Potential difference (voltage)", "page": 2},
+    {"id": "C3", "name": "Resistance", "page": 3},
+    {"id": "C4", "name": "Ohm's law", "page": 4},
+    {"id": "C5", "name": "Series circuits", "page": 5}
+  ],
+  "edges_parent_before_child": [["C1", "C2"], ["C1", "C3"], ["C2", "C4"], ["C3", "C4"], ["C4", "C5"]],
+  "root_concepts": ["C1"],
+  "seed_misconceptions": {
+    "C1": [
+      "Current is the amount of charge stored in the wire, not a rate of flow",
+      "An ammeter is connected in parallel across the component",
+      "One wire from the cell to the bulb is enough for current to flow",
+      "Electrons move from the positive terminal to the negative terminal, the same way as conventional current"
+    ],
+    "C2": [
+      "Voltage flows through the wires like current",
+      "Voltage and current are the same thing",
+      "A voltmeter is connected in series",
+      "Voltage is a property of a single point, not a difference between two points"
+    ],
+    "C3": [
+      "A thicker wire has more resistance",
+      "A longer wire has less resistance",
+      "A hotter metal wire has a lower resistance",
+      "The resistance of a wire changes when the voltage or current changes"
+    ],
+    "C4": [
+      "More resistance gives more current at the same voltage",
+      "Doubling the voltage doubles the resistance",
+      "V = I / R, or I = V x R (formula mix-ups)",
+      "A filament bulb gives a straight-line current-voltage graph"
+    ],
+    "C5": [
+      "Current is used up as it passes through each component, so it is smaller after each bulb",
+      "Current divides between the components in series",
+      "Each component gets the full voltage of the cell",
+      "The total resistance in series is smaller than the smallest resistor"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "electricity_gold",
+  "pdf": "Electricity_Basics.pdf",
+  "pdf_sha256": "c6b55d312a2ada0b89062495b8dcba466888642e082ab3b196aefe89a61ee93d",
+  "created": "2026-10-31",
+  "source": "authored by Claude in Claude Code (SPEC 14 Plan B). Deterministic gates only; no LLM gates run.",
+  "models": {},
+  "max_concepts": 5
+}

@@ -1,0 +1,10 @@
+For each question and EACH option, say whether the study notes below clearly support that option as a true
+statement or a right answer. Use ONLY the notes. An option that is wrong, unsupported, or only partly true is false.
+
+Return ONLY this JSON: {"items": [{"id": "C1-recall-1", "supported": {"A": true, "B": false, "C": false, "D": false}}]}
+
+NOTES:
+{{DOC}}
+
+QUESTIONS:
+{{INPUT}}

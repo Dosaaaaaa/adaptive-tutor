@@ -1,0 +1,22 @@
+You turn study notes into a concept map for a teaching tool.
+
+Read the notes below. Find the main concepts a student must understand (at most {{MAX}}) and which concepts must
+be understood before others.
+
+Return JSON:
+{"concepts": [{"id": "C1", "name": "short name", "summary": "one sentence", "page": 1,
+               "quote": "one sentence copied exactly from the notes"}],
+ "edges": [{"parent": "C1", "child": "C2", "why": "the words in the notes that show the dependency"}]}
+
+Rules:
+- At most {{MAX}} concepts. Merge small ideas into a larger concept. Use ids C1, C2, ... in teaching order.
+- "quote" is ONE sentence copied exactly, character for character, from the notes: the sentence that introduces or
+  defines the concept. "page" is the page that holds the quote.
+- An edge parent -> child means a student must understand the parent before the child. Add an edge only when the
+  notes themselves rely on the parent while teaching the child (for example "Recall from Concept 1 ..."). Do not add
+  an edge only because one page comes after another.
+- No cycles. Every concept must be linked to at least one other concept.
+- Use only what is in the notes.
+{{FEEDBACK}}
+NOTES:
+{{DOC}}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "M1.1",
+    "concept_id": "C1",
+    "statement": "If there is a break in a wire, electric current will still flow up to the point of the break.",
+    "contrast_quote": "A break anywhere in the loop stops the current in the whole loop."
+  },
+  {
+    "id": "M1.2",
+    "concept_id": "C1",
+    "statement": "Electrons move through a circuit from the positive terminal to the negative terminal of a cell.",
+    "contrast_quote": "The electrons move the opposite way, from the negative terminal to the positive terminal."
+  },
+  {
+    "id": "M1.3",
+    "concept_id": "C1",
+    "statement": "To measure the current through a component, an ammeter must be connected in parallel across it.",
+    "contrast_quote": "An ammeter must be connected in series with the component, so that all of the current flows through it."
+  },
+  {
+    "id": "M2.1",
+    "concept_id": "C2",
+    "statement": "I believe that potential difference flows through the wires of a circuit just like electric charge does.",
+    "contrast_quote": "It does not flow through a wire."
+  },
+  {
+    "id": "M2.2",
+    "concept_id": "C2",
+    "statement": "I believe that a voltmeter must be connected in series with a component to measure its potential difference.",
+    "contrast_quote": "A voltmeter must be connected in parallel, across the component being measured."
+  },
+  {
+    "id": "M2.3",
+    "concept_id": "C2",
+    "statement": "I believe that a 9 V battery gives a total of 9 J of energy to the whole circuit regardless of how much charge passes through it.",
+    "contrast_quote": "A 9 V battery gives 9 J to every coulomb that passes through it."
+  },
+  {
+    "id": "M3.1",
+    "concept_id": "C3",
+    "statement": "A longer wire has less resistance to current than a shorter wire of the same material and thickness.",
+    "contrast_quote": "A longer wire has a greater resistance than a shorter wire of the same material and thickness."
+  },
+  {
+    "id": "M3.2",
+    "concept_id": "C3",
+    "statement": "Thicker wires offer more resistance to electric current than thinner wires of the same material and length.",
+    "contrast_quote": "A thicker wire has a smaller resistance than a thinner wire of the same material and length."
+  },
+  {
+    "id": "M3.3",
+    "concept_id": "C3",
+    "statement": "Heating up a metal wire causes its resistance to decrease because the energy helps charge move through it.",
+    "contrast_quote": "The resistance of a metal wire rises when the wire gets hotter, because the atoms vibrate more and collide with more of the moving charge."
+  },
+  {
+    "id": "M4.1",
+    "concept_id": "C4",
+    "statement": "Doubling the potential difference across a component while keeping the resistance constant will cause the current to drop by half.",
+    "contrast_quote": "When the resistance stays constant, doubling the potential difference doubles the current."
+  },
+  {
+    "id": "M4.2",
+    "concept_id": "C4",
+    "statement": "If you double the resistance in a component while keeping the potential difference constant, the current flowing through it will also double.",
+    "contrast_quote": "When the potential difference stays constant, doubling the resistance halves the current."
+  },
+  {
+    "id": "M4.3",
+    "concept_id": "C4",
+    "statement": "You can calculate the potential difference across a component if you only know the current flowing through it.",
+    "contrast_quote": "To find any one of V, I or R, you must know the other two."
+  },
+  {
+    "id": "M5.1",
+    "concept_id": "C5",
+    "statement": "I believe that electric current gets used up as it flows through components, making the current smaller after passing through a bulb.",
+    "contrast_quote": "The current is the same at every point in a series circuit, because the charge has no other path to take and cannot pile up or disappear along the way."
+  },
+  {
+    "id": "M5.2",
+    "concept_id": "C5",
+    "statement": "I believe that adding an extra resistor in series causes the current in the circuit to increase.",
+    "contrast_quote": "Adding another resistor in series increases the total resistance, so the current in the circuit gets smaller."
+  },
+  {
+    "id": "M5.3",
+    "concept_id": "C5",
+    "statement": "I believe that when components in a series circuit have different resistances, the component with the smaller resistance gets the larger share of the potential difference.",
+    "contrast_quote": "If the resistances are different, the component with the larger resistance gets the larger share of the potential difference."
+  }
+]

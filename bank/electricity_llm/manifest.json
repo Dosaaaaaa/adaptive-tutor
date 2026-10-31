@@ -1,0 +1,21 @@
+{
+  "name": "electricity_llm",
+  "pdf": "Electricity_Basics.pdf",
+  "pdf_sha256": "c6b55d312a2ada0b89062495b8dcba466888642e082ab3b196aefe89a61ee93d",
+  "created": "2026-10-31",
+  "source": "llm pipeline",
+  "models": {
+    "generator": "gemini:gemini-3.6-flash",
+    "verifier": "groq:openai/gpt-oss-120b"
+  },
+  "max_concepts": 5,
+  "votes": 3,
+  "ai_checks": true,
+  "counts": {
+    "questions_generated": 30,
+    "concepts": 5,
+    "edges": 5,
+    "misconceptions": 15,
+    "questions_kept": 28
+  }
+}

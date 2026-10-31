@@ -1,0 +1,1318 @@
+[
+  {
+    "id": "C1-recall-2",
+    "concept_id": "C1",
+    "kind": "recall",
+    "round": 1,
+    "stem": "How must an ammeter be connected in a circuit to measure the electric current through a component?",
+    "options": [
+      {
+        "key": "A",
+        "text": "In series with the component, so that all of the current flows through it.",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "In parallel with the power supply, so that it shares the current equally with all components.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "In series after the component, because current only flows up to the point of a break.",
+        "tag": "M1.1"
+      },
+      {
+        "key": "D",
+        "text": "In parallel across the component, so that it measures the current flowing through it.",
+        "tag": "M1.3"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "An ammeter must be connected in series with a component so that all of the current flows through the meter.",
+    "evidence": {
+      "page": 1,
+      "quote": "An ammeter must be connected in series with the component, so that all of the current flows through it."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "A",
+        "A",
+        "A"
+      ],
+      "supported_options": [
+        "A"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C1-apply-1",
+    "concept_id": "C1",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A student sets up a circuit loop containing a cell, a switch, and a lamp. If a wire breaks between the switch and the lamp, what happens to the electric current in the circuit?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The current stops flowing in the whole loop immediately.",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "The current continues to flow through the wire up to the point of the break.",
+        "tag": "M1.1"
+      },
+      {
+        "key": "C",
+        "text": "The current increases in the unbroken part of the circuit to make up for the break.",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "The current flows from the positive terminal up to the break, then moves backward.",
+        "tag": "M1.2"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "Current requires a complete circuit to flow, so a break anywhere in the loop stops the current in the entire loop.",
+    "evidence": {
+      "page": 1,
+      "quote": "A break anywhere in the loop stops the current in the whole loop."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "A",
+        "A",
+        "A"
+      ],
+      "supported_options": [
+        "A"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C1-apply-2",
+    "concept_id": "C1",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A current of 0.5 A flows through a resistor for 20 seconds. How much charge passes through the resistor, and from which terminal do the electrons originate?",
+    "options": [
+      {
+        "key": "A",
+        "text": "10 C of charge passes through, with electrons moving from the positive terminal.",
+        "tag": "M1.2"
+      },
+      {
+        "key": "B",
+        "text": "0.025 C of charge passes through, with electrons moving from the negative terminal.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "10 C of charge passes through, with electrons moving from the negative terminal.",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "40 C of charge passes through, measured by an ammeter connected in parallel.",
+        "tag": "M1.3"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "The charge is calculated using Q = I × t = 0.5 A × 20 s = 10 C, and electrons move from the negative terminal to the positive terminal.",
+    "evidence": {
+      "page": 1,
+      "quote": "The formula is I = Q / t, where I is the current in amperes (A), Q is the charge in coulombs (C) and t is the time in seconds (s)."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "C",
+        "C",
+        "C"
+      ],
+      "supported_options": [
+        "C"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C1-tiebreak-1",
+    "concept_id": "C1",
+    "kind": "tiebreak",
+    "round": 3,
+    "stem": "An electric component has a current of 1 ampere flowing through it. What does a current of one ampere mean in terms of charge?",
+    "options": [
+      {
+        "key": "A",
+        "text": "One joule of energy is transferred to each coulomb of charge per second.",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "One coulomb of charge passes through an ammeter connected in parallel.",
+        "tag": "M1.3"
+      },
+      {
+        "key": "C",
+        "text": "One coulomb of charge passes a point every second.",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "One coulomb of charge flows per second up to any break in the wire.",
+        "tag": "M1.1"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "A current of one ampere is defined as one coulomb of charge passing a point every second.",
+    "evidence": {
+      "page": 1,
+      "quote": "A current of one ampere means that one coulomb of charge passes a point every second."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "C",
+        "C",
+        "C"
+      ],
+      "supported_options": [
+        "C"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C1-simple-1",
+    "concept_id": "C1",
+    "kind": "simple",
+    "round": 3,
+    "stem": "What is electric current?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The movement of electrons from the positive terminal to the negative terminal.",
+        "tag": "M1.2"
+      },
+      {
+        "key": "B",
+        "text": "The opposition of a material to the flow of moving charges.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "The flow of electric charge through a conductor.",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "The flow of electric charge that moves up to the point of a break in a wire.",
+        "tag": "M1.1"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "Electric current is defined as the flow of electric charge through a conductor.",
+    "evidence": {
+      "page": 1,
+      "quote": "Electric current is the flow of electric charge through a conductor."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "C",
+        "C",
+        "C"
+      ],
+      "supported_options": [
+        "C"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C2-recall-1",
+    "concept_id": "C2",
+    "kind": "recall",
+    "round": 1,
+    "stem": "How must a voltmeter be connected in a circuit to measure the potential difference across a component?",
+    "options": [
+      {
+        "key": "A",
+        "text": "In series, so potential difference can flow through it.",
+        "tag": "M2.1"
+      },
+      {
+        "key": "B",
+        "text": "In parallel with the switch, before current enters it.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "In parallel, across the component being measured.",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "In series, in line with the component being measured.",
+        "tag": "M2.2"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "A voltmeter is always connected in parallel across a component to measure the potential difference between two points.",
+    "evidence": {
+      "page": 2,
+      "quote": "A voltmeter must be connected in parallel, across the component being measured."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "C",
+        "C",
+        "C"
+      ],
+      "supported_options": [
+        "C"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C2-recall-2",
+    "concept_id": "C2",
+    "kind": "recall",
+    "round": 1,
+    "stem": "Which statement correctly describes potential difference in an electric circuit?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It is the fixed total amount of energy given to a circuit by a battery.",
+        "tag": "M2.3"
+      },
+      {
+        "key": "B",
+        "text": "It is the rate at which electric charge passes a given point per second.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "It is the energy transferred per coulomb of charge between two points.",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "It is a physical quantity that flows through the wires alongside current.",
+        "tag": "M2.1"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "Potential difference is defined as the amount of energy transferred to or from each coulomb of charge passing between two points.",
+    "evidence": {
+      "page": 2,
+      "quote": "Potential difference (voltage) between two points is the energy transferred to or from each coulomb of charge as it moves between those points."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "C",
+        "C",
+        "C"
+      ],
+      "supported_options": [
+        "C"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C2-apply-1",
+    "concept_id": "C2",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A cell with a potential difference of 12 V moves 4 C of charge through a circuit. How much energy is transferred by the cell?",
+    "options": [
+      {
+        "key": "A",
+        "text": "48 J, calculated by multiplying potential difference by charge.",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "3 J, calculated by dividing potential difference by charge.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "16 J, calculated by adding potential difference to charge.",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "12 J, because a 12 V supply always gives 12 J of energy in total.",
+        "tag": "M2.3"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "Energy transferred is calculated by multiplying potential difference by charge (W = V × Q = 12 V × 4 C = 48 J).",
+    "evidence": {
+      "page": 2,
+      "quote": "The formula is V = W / Q, where V is the potential difference in volts (V), W is the energy in joules (J) and Q is the charge in coulombs (C)."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "A",
+        "A",
+        "A"
+      ],
+      "supported_options": [
+        "A"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C2-apply-2",
+    "concept_id": "C2",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A heater in a circuit transfers 45 J of energy while 5 C of charge passes through it. What is the potential difference across the heater?",
+    "options": [
+      {
+        "key": "A",
+        "text": "225 V, calculated by multiplying the energy transferred by the charge.",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "45 V, because a battery's potential difference equals its total energy in joules.",
+        "tag": "M2.3"
+      },
+      {
+        "key": "C",
+        "text": "40 V, calculated by subtracting the charge from the total energy transferred.",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "9 V, calculated by dividing the energy transferred by the charge.",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "Potential difference is calculated by dividing energy transferred by charge (V = W / Q = 45 J / 5 C = 9 V).",
+    "evidence": {
+      "page": 2,
+      "quote": "The formula is V = W / Q, where V is the potential difference in volts (V), W is the energy in joules (J) and Q is the charge in coulombs (C)."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "D",
+        "D",
+        "D"
+      ],
+      "supported_options": [
+        "D"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C2-tiebreak-1",
+    "concept_id": "C2",
+    "kind": "tiebreak",
+    "round": 3,
+    "stem": "What energy transfer takes place at a bulb in a simple circuit as charge passes through it?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Energy is transferred from the charge to the surroundings as heat and light.",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "Energy is absorbed from surroundings by the charge as it passes through the bulb.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "Energy of a fixed total amount is given to the bulb regardless of charge passed.",
+        "tag": "M2.3"
+      },
+      {
+        "key": "D",
+        "text": "Energy is transferred through the circuit as potential difference flowing in wires.",
+        "tag": "M2.1"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "A bulb acts as a component that converts energy carried by charge into heat and light transferred to the surroundings.",
+    "evidence": {
+      "page": 2,
+      "quote": "A component such as a bulb transfers energy from the charge to its surroundings as heat and light."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "A",
+        "A",
+        "A"
+      ],
+      "supported_options": [
+        "A"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C3-recall-1",
+    "concept_id": "C3",
+    "kind": "recall",
+    "round": 1,
+    "stem": "What happens to the resistance of a metal wire when its temperature increases?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It decreases because heating the wire causes its cross-sectional area to double.",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "It decreases because the thermal energy helps electric charge move through it.",
+        "tag": "M3.3"
+      },
+      {
+        "key": "C",
+        "text": "It increases because vibrating atoms collide more with moving charges.",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "It stays exactly the same because temperature only affects voltage, not resistance.",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "As a metal wire gets hotter, its atoms vibrate more and collide with more of the moving charges, raising its resistance.",
+    "evidence": {
+      "page": 3,
+      "quote": "The resistance of a metal wire rises when the wire gets hotter, because the atoms vibrate more and collide with more of the moving charge."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "C",
+        "C",
+        "C"
+      ],
+      "supported_options": [
+        "C"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C3-recall-2",
+    "concept_id": "C3",
+    "kind": "recall",
+    "round": 1,
+    "stem": "How does the cross-sectional area of a wire affect its resistance, assuming material and length remain constant?",
+    "options": [
+      {
+        "key": "A",
+        "text": "A thicker wire offers more resistance because it contains more material for charges to pass through.",
+        "tag": "M3.2"
+      },
+      {
+        "key": "B",
+        "text": "The thickness of a wire has no effect on its resistance to electric current.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "A thicker wire has a greater resistance because charge travels further across its width.",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "A thicker wire has a smaller resistance than a thinner wire.",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "A wire with a larger cross-sectional area allows current to flow more easily, resulting in smaller resistance.",
+    "evidence": {
+      "page": 3,
+      "quote": "A thicker wire has a smaller resistance than a thinner wire of the same material and length."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "D",
+        "D",
+        "D"
+      ],
+      "supported_options": [
+        "D"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C3-apply-1",
+    "concept_id": "C3",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A metal wire of length 2 metres has a resistance of 4 Ω. What is the resistance of a wire made of the exact same material and thickness that is 6 metres long?",
+    "options": [
+      {
+        "key": "A",
+        "text": "4.00 Ω",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "1.33 Ω",
+        "tag": "M3.1"
+      },
+      {
+        "key": "C",
+        "text": "24.0 Ω",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "12 Ω",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "Because the wire is three times as long, its resistance is three times as great (3 × 4 Ω = 12 Ω).",
+    "evidence": {
+      "page": 3,
+      "quote": "A longer wire has a greater resistance than a shorter wire of the same material and thickness."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "D",
+        "D",
+        "D"
+      ],
+      "supported_options": [
+        "D"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C3-apply-2",
+    "concept_id": "C3",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A wire with a cross-sectional area of 1 mm² has a resistance of 10 Ω. What is the resistance of a wire of the same material and length with a cross-sectional area of 2 mm²?",
+    "options": [
+      {
+        "key": "A",
+        "text": "5 Ω",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "20 Ω",
+        "tag": "M3.2"
+      },
+      {
+        "key": "C",
+        "text": "10 Ω",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "40 Ω",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "Doubling the cross-sectional area of the wire halves its resistance, so 10 Ω is halved to 5 Ω.",
+    "evidence": {
+      "page": 3,
+      "quote": "If the cross-sectional area is doubled, the resistance is halved."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "A",
+        "A",
+        "A"
+      ],
+      "supported_options": [
+        "A"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C3-tiebreak-1",
+    "concept_id": "C3",
+    "kind": "tiebreak",
+    "round": 3,
+    "stem": "Why is copper commonly chosen for connecting wires while nichrome is used in heating elements?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Copper increases resistance when heated, whereas nichrome decreases resistance when heated.",
+        "tag": "M3.3"
+      },
+      {
+        "key": "B",
+        "text": "Copper has a low resistance, whereas nichrome has a high resistance.",
+        "tag": "correct"
+      },
+      {
+        "key": "C",
+        "text": "Copper has a high resistance, whereas nichrome has a low resistance.",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "Copper wire has a shorter length, whereas nichrome acts as a thicker wire.",
+        "tag": "M3.1"
+      }
+    ],
+    "answer_key": "B",
+    "rationale": "Connecting wires require low resistance materials like copper, while heating elements require high resistance materials like nichrome.",
+    "evidence": {
+      "page": 3,
+      "quote": "Copper has a low resistance, so it is used for connecting wires."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "B",
+        "B",
+        "B"
+      ],
+      "supported_options": [
+        "B"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C3-simple-1",
+    "concept_id": "C3",
+    "kind": "simple",
+    "round": 3,
+    "stem": "What is the unit of measurement for electrical resistance?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Ohms (symbol Ω)",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "Amperes (symbol A)",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "Volts (symbol V)",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "Coulombs (symbol C)",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "Electrical resistance is measured in units called ohms, represented by the symbol Ω.",
+    "evidence": {
+      "page": 3,
+      "quote": "Resistance is measured in ohms (symbol Ω)."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "A",
+        "A",
+        "A"
+      ],
+      "supported_options": [
+        "A"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C4-recall-1",
+    "concept_id": "C4",
+    "kind": "recall",
+    "round": 1,
+    "stem": "What happens to the current flowing through a component if the potential difference across it is doubled while its resistance stays constant?",
+    "options": [
+      {
+        "key": "A",
+        "text": "It quadruples.",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "It drops by half.",
+        "tag": "M4.1"
+      },
+      {
+        "key": "C",
+        "text": "It remains unchanged.",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "It doubles.",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "According to Ohm's law, when resistance is held constant, potential difference and current are directly proportional.",
+    "evidence": {
+      "page": 4,
+      "quote": "When the resistance stays constant, doubling the potential difference doubles the current."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "D",
+        "D",
+        "D"
+      ],
+      "supported_options": [
+        "D"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C4-recall-2",
+    "concept_id": "C4",
+    "kind": "recall",
+    "round": 1,
+    "stem": "According to Ohm’s law, what information is required to calculate the potential difference across a component?",
+    "options": [
+      {
+        "key": "A",
+        "text": "You only need to know the current flowing through the component.",
+        "tag": "M4.3"
+      },
+      {
+        "key": "B",
+        "text": "You must know both the current and the resistance.",
+        "tag": "correct"
+      },
+      {
+        "key": "C",
+        "text": "You only need to know the resistance of the component.",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "You only need to know the total power supplied to the circuit.",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "B",
+    "rationale": "Ohm's law relates potential difference, current, and resistance, meaning you must know any two quantities to calculate the third.",
+    "evidence": {
+      "page": 4,
+      "quote": "To find any one of V, I or R, you must know the other two."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "B",
+        "B",
+        "B"
+      ],
+      "supported_options": [
+        "B"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C4-apply-1",
+    "concept_id": "C4",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A fixed potential difference is applied across a resistor with a resistance of 10 Ω, resulting in a current of 4 A. If the resistance is doubled to 20 Ω while potential difference stays constant, what is the new current?",
+    "options": [
+      {
+        "key": "A",
+        "text": "2 A",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "4 A",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "8 A",
+        "tag": "M4.2"
+      },
+      {
+        "key": "D",
+        "text": "1 A",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "When the potential difference remains constant, doubling the resistance halves the current from 4 A to 2 A.",
+    "evidence": {
+      "page": 4,
+      "quote": "When the potential difference stays constant, doubling the resistance halves the current."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "A",
+        "A",
+        "A"
+      ],
+      "supported_options": [
+        "A"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C4-apply-2",
+    "concept_id": "C4",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A component has a current of 6 A flowing through it when connected across a 12 V supply. If the potential difference is increased to 24 V while resistance remains constant, what is the new current?",
+    "options": [
+      {
+        "key": "A",
+        "text": "3 A",
+        "tag": "M4.1"
+      },
+      {
+        "key": "B",
+        "text": "24 A",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "6 A",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "12 A",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "Doubling the potential difference from 12 V to 24 V at constant resistance doubles the current from 6 A to 12 A.",
+    "evidence": {
+      "page": 4,
+      "quote": "When the resistance stays constant, doubling the potential difference doubles the current."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "D",
+        "D",
+        "D"
+      ],
+      "supported_options": [
+        "D"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C4-tiebreak-1",
+    "concept_id": "C4",
+    "kind": "tiebreak",
+    "round": 3,
+    "stem": "Why is the graph of current against potential difference for a filament bulb a curve rather than a straight line?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The filament gets colder, causing its resistance to drop as current increases.",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "The current flowing through the filament stays constant regardless of voltage.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "The potential difference can be calculated knowing only the current through it.",
+        "tag": "M4.3"
+      },
+      {
+        "key": "D",
+        "text": "The filament gets hot and its resistance rises as current increases.",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "As current flows through a filament bulb, it heats up, raising its resistance and turning the linear relationship into a curve.",
+    "evidence": {
+      "page": 4,
+      "quote": "The graph for a filament bulb is a curve, because the filament gets hot and its resistance rises as the current increases."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "D",
+        "D",
+        "D"
+      ],
+      "supported_options": [
+        "D"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C4-simple-1",
+    "concept_id": "C4",
+    "kind": "simple",
+    "round": 3,
+    "stem": "Which equation correctly represents Ohm’s law?",
+    "options": [
+      {
+        "key": "A",
+        "text": "V = I / R",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "I = V × R",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "V = R / I",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "V = I × R",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "Ohm's law defines potential difference (V) as current (I) multiplied by resistance (R).",
+    "evidence": {
+      "page": 4,
+      "quote": "Ohm’s law states that V = I × R, where V is the potential difference in volts, I is the current in amperes and R is the resistance in ohms."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "D",
+        "D",
+        "D"
+      ],
+      "supported_options": [
+        "D"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C5-recall-1",
+    "concept_id": "C5",
+    "kind": "recall",
+    "round": 1,
+    "stem": "What happens to the current in a series circuit when an additional resistor is added?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The current stays the same before the new resistor but decreases after passing it.",
+        "tag": "M5.1"
+      },
+      {
+        "key": "B",
+        "text": "The total current remains unchanged because the cell voltage stays constant.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "The total resistance increases, so the current in the circuit gets smaller.",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "The current in the circuit increases because extra components draw more current.",
+        "tag": "M5.2"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "Adding a resistor increases the overall resistance of the circuit, which reduces the total current produced by the supply.",
+    "evidence": {
+      "page": 5,
+      "quote": "Adding another resistor in series increases the total resistance, so the current in the circuit gets smaller."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "C",
+        "C",
+        "C"
+      ],
+      "supported_options": [
+        "C"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C5-recall-2",
+    "concept_id": "C5",
+    "kind": "recall",
+    "round": 1,
+    "stem": "How is potential difference shared across components with different resistances connected in series?",
+    "options": [
+      {
+        "key": "A",
+        "text": "The component with the larger resistance gets the larger share of the potential difference.",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "The component with the smaller resistance gets the larger share of the potential difference.",
+        "tag": "M5.3"
+      },
+      {
+        "key": "C",
+        "text": "Both components receive equal potential difference regardless of their resistance values.",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "The first component uses up most of the current, leaving less voltage for the second.",
+        "tag": "M5.1"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "In a series circuit, potential difference is divided across components in proportion to their resistance, so higher resistance gets a larger voltage share.",
+    "evidence": {
+      "page": 5,
+      "quote": "If the resistances are different, the component with the larger resistance gets the larger share of the potential difference."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "A",
+        "A",
+        "A"
+      ],
+      "supported_options": [
+        "A"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C5-apply-1",
+    "concept_id": "C5",
+    "kind": "apply",
+    "round": 2,
+    "stem": "A 15 V cell is connected in series with a 2 Ω resistor and a 3 Ω resistor. What is the potential difference across the 3 Ω resistor?",
+    "options": [
+      {
+        "key": "A",
+        "text": "15 V",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "6 V",
+        "tag": "M5.3"
+      },
+      {
+        "key": "C",
+        "text": "3 V",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "9 V",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "The total resistance is 5 Ω, giving a circuit current of 3 A (15 V / 5 Ω), so the potential difference across the 3 Ω resistor is 3 A × 3 Ω = 9 V.",
+    "evidence": {
+      "page": 5,
+      "quote": "The potential differences across the components add up to the potential difference of the supply: V total = V1 + V2 + V3."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "D",
+        "D",
+        "D"
+      ],
+      "supported_options": [
+        "D"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C5-apply-2",
+    "concept_id": "C5",
+    "kind": "apply",
+    "round": 2,
+    "stem": "An ammeter placed before a bulb in a series circuit reads 0.4 A. What will an ammeter placed immediately after the bulb read?",
+    "options": [
+      {
+        "key": "A",
+        "text": "0.4 A, because current is the same at every point in a series circuit.",
+        "tag": "correct"
+      },
+      {
+        "key": "B",
+        "text": "0.8 A, because adding a bulb causes the circuit current to increase.",
+        "tag": "M5.2"
+      },
+      {
+        "key": "C",
+        "text": "0.2 A, because electric current gets used up as it flows through the bulb.",
+        "tag": "M5.1"
+      },
+      {
+        "key": "D",
+        "text": "0.0 A, because current is entirely converted into heat and light.",
+        "tag": "other"
+      }
+    ],
+    "answer_key": "A",
+    "rationale": "Electric current is not consumed as it passes through components, so the current reading is identical everywhere in a series loop.",
+    "evidence": {
+      "page": 5,
+      "quote": "An ammeter placed before, between or after the components of a series circuit shows the same reading."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "A",
+        "A",
+        "A"
+      ],
+      "supported_options": [
+        "A"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C5-tiebreak-1",
+    "concept_id": "C5",
+    "kind": "tiebreak",
+    "round": 3,
+    "stem": "How is the total resistance calculated when multiple components are connected in series?",
+    "options": [
+      {
+        "key": "A",
+        "text": "By adding resistors, which causes the current in the circuit to increase.",
+        "tag": "M5.2"
+      },
+      {
+        "key": "B",
+        "text": "By multiplying all of the individual component resistances together.",
+        "tag": "other"
+      },
+      {
+        "key": "C",
+        "text": "By dividing the supply voltage by the total number of components.",
+        "tag": "other"
+      },
+      {
+        "key": "D",
+        "text": "By calculating the sum of the individual resistances of all components.",
+        "tag": "correct"
+      }
+    ],
+    "answer_key": "D",
+    "rationale": "The combined opposition to current in a single path is equal to the sum of each component's individual resistance.",
+    "evidence": {
+      "page": 5,
+      "quote": "The total resistance of components in series is the sum of their resistances: R total = R1 + R2 + R3."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "D",
+        "D",
+        "D"
+      ],
+      "supported_options": [
+        "D"
+      ],
+      "attempts": 1
+    }
+  },
+  {
+    "id": "C5-simple-1",
+    "concept_id": "C5",
+    "kind": "simple",
+    "round": 3,
+    "stem": "Why is there only one path for electric charge in a series circuit?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Because potential difference pushes current through only one path at a time.",
+        "tag": "other"
+      },
+      {
+        "key": "B",
+        "text": "Because current gets used up gradually as it flows through components.",
+        "tag": "M5.1"
+      },
+      {
+        "key": "C",
+        "text": "Because the components are connected end-to-end in a single loop.",
+        "tag": "correct"
+      },
+      {
+        "key": "D",
+        "text": "Because adding extra resistors causes the circuit current to increase rapidly.",
+        "tag": "M5.2"
+      }
+    ],
+    "answer_key": "C",
+    "rationale": "In a series circuit, components are connected sequentially to form a single continuous pathway for the charge.",
+    "evidence": {
+      "page": 5,
+      "quote": "In a series circuit there is only one path for the charge."
+    },
+    "checks": {
+      "grounded": true,
+      "blind_votes": [
+        "C",
+        "C",
+        "C"
+      ],
+      "supported_options": [
+        "C"
+      ],
+      "attempts": 1
+    }
+  }
+]

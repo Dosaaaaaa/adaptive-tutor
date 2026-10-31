@@ -1,0 +1,92 @@
+[
+  {
+    "id": "M1.1",
+    "concept_id": "C1",
+    "statement": "Current is the amount of charge stored in the wire, not a rate of flow.",
+    "contrast_quote": "Current is the rate of flow of charge."
+  },
+  {
+    "id": "M1.2",
+    "concept_id": "C1",
+    "statement": "An ammeter is connected in parallel, across the component.",
+    "contrast_quote": "An ammeter must be connected in series with the component, so that all of the current flows through it."
+  },
+  {
+    "id": "M1.3",
+    "concept_id": "C1",
+    "statement": "Current can still flow and light the bulb when the circuit has a gap, because the current just goes to the bulb.",
+    "contrast_quote": "Current flows only in a complete circuit."
+  },
+  {
+    "id": "M2.1",
+    "concept_id": "C2",
+    "statement": "Potential difference flows through the wires, like current does.",
+    "contrast_quote": "Potential difference is always measured between two points. It does not flow through a wire."
+  },
+  {
+    "id": "M2.2",
+    "concept_id": "C2",
+    "statement": "A voltmeter is connected in series, like an ammeter.",
+    "contrast_quote": "A voltmeter must be connected in parallel, across the component being measured."
+  },
+  {
+    "id": "M2.3",
+    "concept_id": "C2",
+    "statement": "Voltage is the same thing as energy, so a 12 V cell gives 12 J whatever the amount of charge.",
+    "contrast_quote": "A potential difference of one volt means one joule of energy for each coulomb of charge."
+  },
+  {
+    "id": "M3.1",
+    "concept_id": "C3",
+    "statement": "A thicker wire has more resistance, because there is more material in the way.",
+    "contrast_quote": "A thicker wire has a smaller resistance than a thinner wire of the same material and length."
+  },
+  {
+    "id": "M3.2",
+    "concept_id": "C3",
+    "statement": "A hotter metal wire lets charge through more easily, so its resistance falls.",
+    "contrast_quote": "The resistance of a metal wire rises when the wire gets hotter"
+  },
+  {
+    "id": "M3.3",
+    "concept_id": "C3",
+    "statement": "The resistance of a wire changes whenever the voltage or the current changes.",
+    "contrast_quote": "For a metal wire at constant temperature, the resistance stays the same whatever the potential difference across it or the current through it."
+  },
+  {
+    "id": "M4.1",
+    "concept_id": "C4",
+    "statement": "A larger resistance gives a larger current for the same potential difference.",
+    "contrast_quote": "When the potential difference stays constant, doubling the resistance halves the current."
+  },
+  {
+    "id": "M4.2",
+    "concept_id": "C4",
+    "statement": "Doubling the potential difference doubles the resistance, so the current stays the same.",
+    "contrast_quote": "When the resistance stays constant, doubling the potential difference doubles the current."
+  },
+  {
+    "id": "M4.3",
+    "concept_id": "C4",
+    "statement": "The current against potential difference graph of a filament bulb is a straight line, like a wire.",
+    "contrast_quote": "The graph for a filament bulb is a curve"
+  },
+  {
+    "id": "M5.1",
+    "concept_id": "C5",
+    "statement": "Current is used up as it passes through each component, so it is smaller after each bulb.",
+    "contrast_quote": "The current is the same at every point in a series circuit"
+  },
+  {
+    "id": "M5.2",
+    "concept_id": "C5",
+    "statement": "Current divides between the components in a series circuit, like water splitting into branches.",
+    "contrast_quote": "In a series circuit there is only one path for the charge."
+  },
+  {
+    "id": "M5.3",
+    "concept_id": "C5",
+    "statement": "Each component in a series circuit gets the full potential difference of the cell.",
+    "contrast_quote": "The potential differences across the components add up to the potential difference of the supply: V total = V1 + V2 + V3."
+  }
+]

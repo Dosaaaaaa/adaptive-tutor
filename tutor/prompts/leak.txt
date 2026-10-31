@@ -1,0 +1,13 @@
+These quiz questions will all be given to the same student in one test. Check two things.
+1. LEAK: does the text of one question (its stem or its options) reveal, or strongly hint at, the correct answer
+   of a DIFFERENT question in the list?
+2. DUPLICATE: do two questions test the same fact?
+
+Return ONLY this JSON:
+{"leaks": [{"question": "id of the question that gives the hint", "reveals_answer_of": "id of the other question",
+            "why": "short reason"}],
+ "duplicates": [{"a": "id", "b": "id", "why": "short reason"}]}
+Use empty lists when there is none. Be strict about real leaks and duplicates, not about topics that are merely related.
+
+QUESTIONS (each with its correct answer):
+{{INPUT}}

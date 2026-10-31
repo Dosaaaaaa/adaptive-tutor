@@ -1,0 +1,66 @@
+{
+  "concepts": [
+    {
+      "id": "C1",
+      "name": "Electric current",
+      "summary": "Current is the rate of flow of charge, measured in amperes with an ammeter in series.",
+      "page": 1,
+      "quote": "Electric current is the flow of electric charge through a conductor."
+    },
+    {
+      "id": "C2",
+      "name": "Potential difference (voltage)",
+      "summary": "The energy given to each coulomb of charge, measured in volts with a voltmeter in parallel.",
+      "page": 2,
+      "quote": "Charge flows round a circuit only if something pushes it."
+    },
+    {
+      "id": "C3",
+      "name": "Resistance",
+      "summary": "Opposition to current, measured in ohms. Depends on length, thickness, material and temperature.",
+      "page": 3,
+      "quote": "This opposition to the flow of current is called resistance."
+    },
+    {
+      "id": "C4",
+      "name": "Ohm's law",
+      "summary": "V = I x R links potential difference, current and resistance.",
+      "page": 4,
+      "quote": "Ohm’s law links the three quantities."
+    },
+    {
+      "id": "C5",
+      "name": "Series circuits",
+      "summary": "One path: same current everywhere, potential differences add, resistances add.",
+      "page": 5,
+      "quote": "In a series circuit the components are connected one after another, so there is only one path for the charge to follow."
+    }
+  ],
+  "edges": [
+    {
+      "parent": "C1",
+      "child": "C2",
+      "why": "Concept 2 begins: Recall from Concept 1 that current is a flow of charge."
+    },
+    {
+      "parent": "C1",
+      "child": "C3",
+      "why": "Concept 3 begins: Recall from Concept 1 that current is a flow of charge."
+    },
+    {
+      "parent": "C2",
+      "child": "C4",
+      "why": "Concept 4: The potential difference (Concept 2) pushes the current round the circuit."
+    },
+    {
+      "parent": "C3",
+      "child": "C4",
+      "why": "Concept 4: the resistance (Concept 3) limits how big the current can be."
+    },
+    {
+      "parent": "C4",
+      "child": "C5",
+      "why": "Concept 5: Ohm’s law (Concept 4) can be used to analyse a series circuit."
+    }
+  ]
+}
