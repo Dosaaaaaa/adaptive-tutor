@@ -157,3 +157,11 @@ select.input { appearance: auto; }
 .stats > div { display: grid; gap: var(--space-3xs); }
 .stats dt { color: var(--color-muted); font-size: var(--text-sm); order: 2; }
 .stats dd { margin: 0; order: 1; font-variant-numeric: tabular-nums; font-size: var(--text-2xl); font-weight: 700; color: var(--color-cool); line-height: 1.1; }
+
+/* Windows high-contrast mode swaps colours for the user's own: keep bars and the chosen concept visible */
+@media (forced-colors: active) {
+  .meter { border: 1px solid CanvasText; }
+  .meter__fill { background: Highlight; forced-color-adjust: none; }
+  .map__node[aria-pressed="true"] { outline: 3px solid Highlight; }
+  .choice[data-checked="true"] { outline: 3px solid Highlight; }
+}
