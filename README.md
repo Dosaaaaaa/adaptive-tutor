@@ -121,6 +121,18 @@ incoming connections by default). Allow the class network on port 8080 only, for
 `sudo ufw delete allow from 10.83.254.0/24 to any port 8080 proto tcp`. Some guest and school networks also block devices from
 talking to each other; a phone hotspot or a home router does not.
 
+**A public link for any network** (free, no account). `./run_web.sh --public` also opens a Cloudflare quick tunnel to the
+student server and prints a public https address, which the teacher's exam cards then show as the student link. It works from any
+network and needs no firewall change, but only while the script runs, and the address is new every time. It suits a demo or a
+class session, not an exam left open for days (for that, use a host that stays on).
+
+- Install the tool once: download `cloudflared-linux-amd64` from <https://github.com/cloudflare/cloudflared/releases>, compare it
+  with the SHA256 in the release notes, make it executable and put it at `~/.cache/cloudflared/<version>/cloudflared` (or on your
+  `PATH`, or set `CLOUDFLARED`).
+- Only the student server is tunnelled, so the teacher pages are never on the internet. Anyone with the address and an exam code
+  can join, up to the exam's seat limit, so choose the seats with that in mind.
+- Stop it with Ctrl+C, or `kill $(cat data/web.pid)` if it runs in the background.
+
 **On the internet.** Put it behind HTTPS (a reverse proxy or your host's TLS), then set `PUBLIC_URL`, `COOKIE_SECURE=1` and
 `TRUST_PROXY=1`. The safest layout is two instances on one machine over the same database file: a private `TUTOR_MODE=teacher` instance only the
 teacher can reach, and a public `TUTOR_MODE=student` instance that carries only the exam link.
