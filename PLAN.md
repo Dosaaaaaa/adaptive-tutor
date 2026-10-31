@@ -14,7 +14,10 @@ still work and are not required.
   scores, question difficulty, mistakes, data, test students).
 - Checked: 199 Python tests, 38 front-end tests, Hallmark lint clean, axe-core clean on 14 screens in light and dark, real-browser
   runs of both journeys on desktop and phone width. README covers Docker and CI; the code is committed locally, not pushed.
-- Open: push to GitHub (waits for the owner), opening the student link from another device, the judge re-evaluation.
+- On GitHub: private repo https://github.com/Dosaaaaaa/adaptive-tutor, CI green (Python tests; front end types, tests, build).
+  An opening logo screen (4 seconds, once per tab) was added. For a class on one Wi-Fi run `./run_web.sh` (students :8080, teacher :8081).
+- Open: add the second collaborator (needs their GitHub username), a firewall rule so phones can open the student link
+  (`sudo ufw allow from <subnet> to any port 8080 proto tcp`), where to host it online, the judge re-evaluation.
 
 ## 0a. Earlier status (2026-10-31, evening)
 
