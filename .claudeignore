@@ -46,3 +46,9 @@ graphify/**
 .cache/**
 data/*.db*
 CLAUDE.md.generated
+
+# Front end build output and dependencies
+web/node_modules/**
+web/dist/**
+web/package-lock.json
+.hallmark/shots/**

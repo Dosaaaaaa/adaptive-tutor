@@ -1,0 +1,23 @@
+# docker compose up --build   then open http://localhost:8080
+# Teacher area and student link on one address. For a public deployment, see "Deploy" in README.md.
+services:
+  tutor:
+    build:
+      context: .
+      args:
+        APP_UID: ${APP_UID:-1000}   # set APP_UID=$(id -u) if your user id is not 1000, so the container can read .env
+    ports:
+      - "8080:8080"
+    environment:
+      TUTOR_MODE: all            # all | teacher | student
+      # PUBLIC_URL: https://exams.example.org   # the address students use, so links are right
+      # COOKIE_SECURE: "1"                      # when served over HTTPS
+      # TRUST_PROXY: "1"                        # only behind your own reverse proxy
+    volumes:
+      - tutor-data:/app/data
+      - tutor-banks:/app/bank
+      - ./.env:/app/.env:ro      # TEACHER_PASSWORD and the AI keys
+    restart: unless-stopped
+volumes:
+  tutor-data:
+  tutor-banks:

@@ -39,3 +39,9 @@ bank/exam_*/
 .claude/completions/
 .claude/settings.local.json
 *.bak
+
+# ---- Hallmark design tool: keep the log, drop the screenshots and local state ----
+.hallmark/shots/
+.hallmark/before/
+.hallmark/before.json
+.hallmark/salt

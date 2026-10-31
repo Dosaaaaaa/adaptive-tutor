@@ -3,7 +3,20 @@
 Companion to `SPEC.md`. The spec says *what*. This file says *in what order*, *who does it*, and *how we know it works*.
 Rough estimates: the main uncertainty is how well the free AI models follow the output formats.
 
-## 0. Status (2026-10-31, evening)
+## 0. Status (2026-10-31, late): web app
+
+**The Streamlit screens now have a full web replacement: `api/` (FastAPI) and `web/` (React + Vite + TypeScript), same brain.**
+Run: `.venv/bin/uvicorn api.main:app --port 8080`, open http://localhost:8080 (teacher password in `.env`). The Streamlit apps
+still work and are not required.
+
+- Student: front door, join by link, one question at a time with a reason or "I am guessing", score and concept breakdown at the end.
+- Teacher: sign in, exams with PDF upload, seat limit, link and build progress, then the class report (re-teach cards, concept map,
+  scores, question difficulty, mistakes, data, test students).
+- Checked: 199 Python tests, 38 front-end tests, Hallmark lint clean, axe-core clean on 14 screens in light and dark, real-browser
+  runs of both journeys on desktop and phone width. README covers Docker and CI; the code is committed locally, not pushed.
+- Open: push to GitHub (waits for the owner), opening the student link from another device, the judge re-evaluation.
+
+## 0a. Earlier status (2026-10-31, evening)
 
 **Built and tested: 163 tests, real browser runs of both apps.**
 
@@ -15,8 +28,8 @@ Rough estimates: the main uncertainty is how well the free AI models follow the 
 | How many students? | The teacher sets the number of places when creating the exam. The link refuses more students than that. |
 | Is the brain changed? | No. `mastery`, `rounds`, `service`, `judge` and the build pipeline are untouched. The exam layer adds a table, an exam filter on the report, and new modules (`exams`, `scoring`, `jobs`). |
 
-Open: the AI judge finds the intended misconception 58% of the time on synthetic reasons (target 80%; it never names a wrong
-one and never flags a sound reason). Gemini is often unavailable (503): the fallback to Groq `qwen3.8-27b` is set in `.env`.
+Open (superseded): the first judge check said 58%, but that came from flawed synthetic reasons; on valid reasons it named the right
+misconception 26 of 26 and never flagged a sound reason. A fresh run of the evaluation is still pending. Gemini is often unavailable (503): the fallback to Groq `qwen3.8-27b` is set in `.env`.
 Not verified: reaching the student link from another device (this computer's firewall was not tested), and a real build
 started from the upload button with the live AI (the reuse path and the background process are tested). Real tester data.
 
