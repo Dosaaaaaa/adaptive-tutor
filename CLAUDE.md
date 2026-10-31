@@ -9,7 +9,7 @@ concept, finds misconceptions, scores each student and shows the class where it 
 
 ## Commands
 - Tests: `.venv/bin/pytest -q` and `cd web && npm test`
-- Web app, one server: `.venv/bin/uvicorn api.main:app --port 8080` (serves `web/dist`). For a class: `./run_web.sh [--public]` (students :8080 on the network, teacher :8081 private; --public adds a Cloudflare quick-tunnel link). Streamlit: `./run.sh`
+- Web app, one server: `.venv/bin/uvicorn api.main:app --port 8080` (serves `web/dist`). For a class: `./run_web.sh [--public | --public-students]` (default: students :8080 on the network, teacher :8081 private; --public: whole app, teacher included, on one Cloudflare quick-tunnel address). Streamlit: `./run.sh`
 - Keys live only in `.env`. Never print or commit them.
 
 ## Rules

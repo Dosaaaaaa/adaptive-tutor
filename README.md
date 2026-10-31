@@ -121,16 +121,20 @@ incoming connections by default). Allow the class network on port 8080 only, for
 `sudo ufw delete allow from 10.83.254.0/24 to any port 8080 proto tcp`. Some guest and school networks also block devices from
 talking to each other; a phone hotspot or a home router does not.
 
-**A public link for any network** (free, no account). `./run_web.sh --public` also opens a Cloudflare quick tunnel to the
-student server and prints a public https address, which the teacher's exam cards then show as the student link. It works from any
-network and needs no firewall change, but only while the script runs, and the address is new every time. It suits a demo or a
-class session, not an exam left open for days (for that, use a host that stays on).
+**A public link for any network** (free, no account). A Cloudflare quick tunnel gives the app a public https address. It works
+from any network and needs no firewall change, but only while the script runs, and the address is new every time. It suits a demo
+or a class session, not an exam left open for days (for that, use a host that stays on).
+
+- `./run_web.sh --public` puts the **whole app** on one address: students open `<address>/e/CODE`, the teacher signs in at
+  `<address>/teacher`, and the teacher's exam cards show the public student link. The teacher sign-in page is then reachable from
+  the internet. What protects it: the teacher password (use a long one), 5 sign-in tries a minute per address, an https-only
+  session cookie, and the checks on every request. Anyone who gets in can read every exam, so treat the password like a key.
+- `./run_web.sh --public-students` tunnels only the student server. The teacher stays on this computer at `http://localhost:8081`.
 
 - Install the tool once: download `cloudflared-linux-amd64` from <https://github.com/cloudflare/cloudflared/releases>, compare it
   with the SHA256 in the release notes, make it executable and put it at `~/.cache/cloudflared/<version>/cloudflared` (or on your
   `PATH`, or set `CLOUDFLARED`).
-- Only the student server is tunnelled, so the teacher pages are never on the internet. Anyone with the address and an exam code
-  can join, up to the exam's seat limit, so choose the seats with that in mind.
+- Anyone with the address and an exam code can join, up to the exam's seat limit, so choose the seats with that in mind.
 - Stop it with Ctrl+C, or `kill $(cat data/web.pid)` if it runs in the background.
 
 **On the internet.** Put it behind HTTPS (a reverse proxy or your host's TLS), then set `PUBLIC_URL`, `COOKIE_SECURE=1` and
