@@ -7,16 +7,20 @@ Run:  python -m tutor.build_bank demo/Electricity_Basics.pdf --name electricity_
 from __future__ import annotations
 
 import argparse
+import os
 import random
 import time
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import date
+from functools import partial
 from pathlib import Path
 
 from . import config
 from .extract import doc_text, extract_pages, pdf_sha256
 from .gates import BLOCK, Issue, blocking, check_concepts, check_graph, check_misconception, check_question
+from .parallel import run_all
 from .models import (CORRECT, OTHER, Bank, Concept, ConceptsOut, Edge, Evidence, GenQuestion, Misconception,
                      MisconceptionsOut, Option, Page, Question, QuestionsOut, save_bank)
 from .quotes import find_page, norm
@@ -39,6 +43,8 @@ class Report:
     low_confidence: list = field(default_factory=list)
     counts: dict = field(default_factory=dict)
     ai_calls: dict = field(default_factory=dict)
+    stages: dict = field(default_factory=dict)       # seconds per stage
+    tokens: dict = field(default_factory=dict)       # AI tokens used, by role
     seconds: float = 0.0
 
     def markdown(self) -> str:
@@ -49,7 +55,11 @@ class Report:
                  f"- Generator: `{self.models.get('generator', 'n/a')}`  Verifier: `{self.models.get('verifier', 'n/a')}`",
                  f"- Concepts: {c.get('concepts', 0)}, edges: {c.get('edges', 0)}, misconceptions: {c.get('misconceptions', 0)}",
                  f"- Questions generated: {made}, kept: {kept}" + (f" ({100 * kept // made}% passed)" if made else ""),
-                 f"- AI calls (not from cache): {self.ai_calls}", f"- Time: {self.seconds:.0f} s", ""]
+                 f"- AI calls (not from cache): {self.ai_calls}", f"- Time: {self.seconds:.0f} s"
+                 + (" (" + ", ".join(f"{k} {v:.0f} s" for k, v in self.stages.items()) + ")" if self.stages else "")]
+        if self.tokens:
+            lines.append("- AI tokens (read / written): " + ", ".join(f"{k} {v[0]:,} / {v[1]:,}" for k, v in self.tokens.items()))
+        lines.append("")
         for title, items in (("Repairs made by code", self.repairs), ("Low-confidence concepts", self.low_confidence),
                              ("Warnings", self.warnings)):
             if items:
@@ -193,15 +203,15 @@ def stage_questions(gen, pages, concept, mis, context, attempts, report: Report)
 
 # ---- stage 4: AI checks with repair ----
 
-def stage_verify(ver, gen, pages, concepts, edges, mis_by_c, questions, votes, attempts, report: Report) -> list[Question]:
+def stage_verify(ver, gen, pages, concepts, edges, mis_by_c, questions, votes, attempts, report: Report, pool=None) -> list[Question]:
     by_id = {q.id: q for q in questions}
     pending = list(questions)
     concept_of = {c.id: c for c in concepts}
     for rnd in range(attempts + 1):
         if not pending:
             break
-        voted = blind_solve(ver, pages, pending, votes)
-        sup = support_check(ver, pages, pending)
+        voted = blind_solve(ver, pages, pending, votes, pool)
+        sup = support_check(ver, pages, pending, pool)
         failed = {}
         for q in pending:
             why = decide(q, voted.get(q.id, []), sup.get(q.id))
@@ -217,13 +227,15 @@ def stage_verify(ver, gen, pages, concepts, edges, mis_by_c, questions, votes, a
                 report.rejected.append((qid, f"dropped after {attempts} repairs: " + "; ".join(why)))
                 by_id.pop(qid, None)
             break
-        pending = []
-        for qid, why in failed.items():
+        pending, jobs, meta = [], [], []
+        for qid, why in failed.items():      # the failing questions are rewritten side by side
             old, c = by_id[qid], concept_of[by_id[qid].concept_id]
             mis = mis_by_c[c.id]
-            gq = regenerate(gen, c, mis, context_for(c, concepts, edges, pages), old.kind,
-                            [q.stem for q in by_id.values() if q.id != qid and q.concept_id == c.id],
-                            [Issue(BLOCK, "ai_check", w) for w in why], f"{qid}#v{rnd + 1}")
+            jobs.append(partial(regenerate, gen, c, mis, context_for(c, concepts, edges, pages), old.kind,
+                                [q.stem for q in by_id.values() if q.id != qid and q.concept_id == c.id],
+                                [Issue(BLOCK, "ai_check", w) for w in why], f"{qid}#v{rnd + 1}"))
+            meta.append((qid, why, c, mis))
+        for (qid, why, c, mis), gq in zip(meta, run_all(pool, jobs)):
             new = _materialize(gq, qid, c, {m.id for m in mis}, pages) if gq else None
             if new is None or blocking(check_question(new, {m.id for m in mis}, pages)):
                 report.rejected.append((qid, "could not be repaired: " + "; ".join(why)))
@@ -246,32 +258,53 @@ def stage_verify(ver, gen, pages, concepts, edges, mis_by_c, questions, votes, a
 
 def build_bank(pdf: str | Path, name: str, gen, ver=None, *, max_concepts: int = config.MAX_CONCEPTS,
                votes: int = config.VOTES, attempts: int = config.MAX_ATTEMPTS, out_dir: Path | None = None,
-               say=print) -> tuple[Bank, Report]:
+               say=print, workers: int = 1) -> tuple[Bank, Report]:
+    """`workers` is how many AI calls may run side by side (1 = one at a time, the same order as always)."""
     t0 = time.time()
     pdf = Path(pdf)
     pages = extract_pages(pdf)
     report = Report(name=name, pdf=pdf.name, pages=len(pages))
     say(f"[0] extracted {len(pages)} pages")
-    concepts, edges, repairs = stage_concepts(gen, pages, max_concepts, attempts)
-    report.repairs += repairs
-    say(f"[1] {len(concepts)} concepts, {len(edges)} prerequisite edges")
-    misconceptions: list[Misconception] = []
-    questions: list[Question] = []
-    mis_by_c: dict[str, list[Misconception]] = {}
-    for c in concepts:
-        ctx = context_for(c, concepts, edges, pages)
-        mis = stage_misconceptions(gen, pages, c, ctx, attempts)
-        if len(mis) < 2:
-            report.low_confidence.append(f"{c.id} {c.name}: only {len(mis)} valid misconceptions")
-        mis_by_c[c.id] = mis
-        misconceptions += mis
-        questions += stage_questions(gen, pages, c, mis, ctx, attempts, report)
-        say(f"[2-3] {c.id} {c.name}: {len(mis)} misconceptions, {sum(q.concept_id == c.id for q in questions)} questions")
-    if ver is not None:
-        questions = stage_verify(ver, gen, pages, concepts, edges, mis_by_c, questions, votes, attempts, report)
-        say(f"[4] {len(questions)} questions passed the AI checks")
-    else:
-        report.warnings.append("The AI checks were skipped (no verifier): blind solve, one-right-answer and leak checks did NOT run.")
+    pool = ThreadPoolExecutor(max_workers=workers) if workers > 1 else None
+    try:
+        t = time.time()
+        concepts, edges, repairs = stage_concepts(gen, pages, max_concepts, attempts)
+        report.repairs += repairs
+        report.stages["concepts"] = time.time() - t
+        say(f"[1] {len(concepts)} concepts, {len(edges)} prerequisite edges")
+        misconceptions: list[Misconception] = []
+        questions: list[Question] = []
+        mis_by_c: dict[str, list[Misconception]] = {}
+
+        def write_concept(c):
+            ctx = context_for(c, concepts, edges, pages)
+            mis = stage_misconceptions(gen, pages, c, ctx, attempts)
+            local = Report(name=name, pdf=pdf.name, pages=len(pages))      # each concept keeps its own notes, merged in order below
+            made = stage_questions(gen, pages, c, mis, ctx, attempts, local)
+            say(f"[2-3] {c.id} {c.name}: {len(mis)} misconceptions, {len(made)} questions")
+            return mis, made, local
+
+        t = time.time()
+        for c, (mis, made, local) in zip(concepts, run_all(pool, [partial(write_concept, c) for c in concepts])):
+            if len(mis) < 2:
+                report.low_confidence.append(f"{c.id} {c.name}: only {len(mis)} valid misconceptions")
+            mis_by_c[c.id] = mis
+            misconceptions += mis
+            questions += made
+            report.counts["questions_generated"] = report.counts.get("questions_generated", 0) + local.counts.get("questions_generated", 0)
+            report.warnings += local.warnings
+            report.rejected += local.rejected
+        report.stages["questions"] = time.time() - t
+        if ver is not None:
+            t = time.time()
+            questions = stage_verify(ver, gen, pages, concepts, edges, mis_by_c, questions, votes, attempts, report, pool)
+            report.stages["checks"] = time.time() - t
+            say(f"[4] {len(questions)} questions passed the AI checks")
+        else:
+            report.warnings.append("The AI checks were skipped (no verifier): blind solve, one-right-answer and leak checks did NOT run.")
+    finally:
+        if pool is not None:
+            pool.shutdown(wait=False, cancel_futures=True)
     for c in concepts:
         have = {q.kind for q in questions if q.concept_id == c.id}
         if not {"recall", "apply"} <= have:
@@ -282,6 +315,14 @@ def build_bank(pdf: str | Path, name: str, gen, ver=None, *, max_concepts: int =
                      "verifier": (f"{ver.provider.name}:{ver.model}" if hasattr(ver, "provider") else "scripted") if ver else "none"}
     report.ai_calls = {"generator": getattr(gen, "stats", {}).get("calls", 0),
                        "verifier": getattr(ver, "stats", {}).get("calls", 0) if ver else 0}
+    for role, ai in (("generator", gen), ("verifier", ver)):
+        stats = getattr(ai, "stats", None) if ai is not None else None
+        if stats and "tokens_in" in stats:
+            used = [stats["tokens_in"], stats["tokens_out"]]
+            fallback = getattr(ai, "fallback", None)
+            if fallback is not None:
+                used = [used[0] + fallback.stats["tokens_in"], used[1] + fallback.stats["tokens_out"]]
+            report.tokens[role] = tuple(used)
     report.seconds = time.time() - t0
     manifest = {"name": name, "pdf": pdf.name, "pdf_sha256": pdf_sha256(pdf), "created": str(date.today()),
                 "source": "llm pipeline", "models": report.models, "max_concepts": max_concepts, "votes": votes,
@@ -303,6 +344,7 @@ def main() -> None:
     ap.add_argument("--max-concepts", type=int, default=config.MAX_CONCEPTS)
     ap.add_argument("--no-verify", action="store_true", help="skip the AI checks (for debugging only)")
     ap.add_argument("--no-cache", action="store_true")
+    ap.add_argument("--workers", type=int, default=None, help="AI calls that may run side by side (default: BUILD_WORKERS in .env, else 3)")
     args = ap.parse_args()
     name = args.name or f"{Path(args.pdf).stem.lower()}_{pdf_sha256(args.pdf)[:8]}"
     try:
@@ -310,7 +352,8 @@ def main() -> None:
         ver = None if args.no_verify else llm.from_env("verifier", cache=not args.no_cache)
         if ver:
             llm.assert_independent(gen, ver)
-        _, rep = build_bank(args.pdf, name, gen, ver, max_concepts=args.max_concepts)
+        workers = args.workers or int(os.environ.get("BUILD_WORKERS") or config.BUILD_WORKERS)
+        _, rep = build_bank(args.pdf, name, gen, ver, max_concepts=args.max_concepts, workers=max(1, workers))
     except (llm.ConfigError, llm.LLMError, BuildError) as exc:
         raise SystemExit(f"Build stopped: {exc}")
     print(rep.markdown())

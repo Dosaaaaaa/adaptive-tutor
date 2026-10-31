@@ -12,7 +12,8 @@ ENV_FILE = ROOT / ".env"
 
 # Build
 MAX_CONCEPTS = 5            # demo scale. Use 12 to 15 for a 30 to 40 page PDF.
-VOTES = 3                   # blind-solve runs per question
+VOTES = 3                   # blind-solve runs per question (a question stops early once the majority is settled)
+BUILD_WORKERS = 3           # AI calls of one build that may run side by side (BUILD_WORKERS in .env; 1 = one at a time)
 MAX_ATTEMPTS = 3            # regenerate a failing question this many times
 CONTEXT_CHARS = 14000       # max document text sent in one build call
 PER_KIND = {"recall": 2, "apply": 2, "tiebreak": 1, "simple": 1}

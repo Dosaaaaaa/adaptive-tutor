@@ -25,7 +25,7 @@ def test_the_pipeline_rebuilds_the_gold_bank_from_the_pdf(tmp_path, bank):
     assert len(built.questions) == 30 and len(built.misconceptions) == 15 and report.rejected == []
     for q in built.questions:
         assert not blocking(check_question(q, {m.id for m in built.misconceptions_of(q.concept_id)}, built.pages))
-        assert q.checks["blind_votes"] == [q.answer_key] * 3 and q.checks["supported_options"] == [q.answer_key]
+        assert q.checks["blind_votes"] == [q.answer_key] * 2 and q.checks["supported_options"] == [q.answer_key]   # two agreeing votes settle it
         assert q.correct.text == bank.question(q.id).correct.text
     assert {q.answer_key for q in built.questions} == set("ABCD")           # the code spreads the right answers
     assert (tmp_path / "bank" / "build_report.md").exists() and load_bank(tmp_path / "bank").name == "t"
@@ -80,4 +80,4 @@ def test_a_broken_concept_extraction_stops_the_build_with_a_clear_message(tmp_pa
 def test_call_budget_is_in_the_expected_range(tmp_path, bank):
     (_, report), gen, ver = build(tmp_path, bank)
     assert gen.stats["calls"] == 1 + 5 + 5                                   # concepts + misconceptions + questions
-    assert ver.stats["calls"] <= 3 * 3 + 3 + 1                               # votes (3 chunks x 3) + support (3) + leak
+    assert ver.stats["calls"] == 2 + 1 + 1                                   # the 2 votes that settle it + support + leak: one call each for all 30 questions

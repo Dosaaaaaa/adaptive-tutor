@@ -10,7 +10,7 @@
 #                                 internet, protected by the teacher password (5 tries a minute per address).
 #   ./run_web.sh --public-students   the same tunnel, but only the student server is public; the teacher stays on this computer
 #
-# The public address is new every time and works only while this script runs.
+# The public address is new every time and works only while this script runs. Stop everything with ./stop_web.sh
 cd "$(dirname "$0")" || exit 1
 
 mode="${1:-}"

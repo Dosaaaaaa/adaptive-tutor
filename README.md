@@ -37,6 +37,27 @@ Open <http://localhost:8080>.
 
 No PDF handy? `demo/Electricity_Basics.pdf` is a 5-page example, and the exam form offers a ready-made quiz for it.
 
+## Why a quiz takes minutes, and what makes it faster
+
+Building a quiz from a PDF is about 15 AI calls to write the questions and a few more to check every one of them with a second
+AI. On the free plans the limits, not the code, set the pace:
+
+- Groq's free plan gives each model **8,000 tokens a minute and 200,000 a day**. Every call re-sends the PDF's text, so one
+  build of a short PDF used to use up most of a day's allowance of the checking model, and the live exam's judge shares it.
+- Gemini often answers "high demand" (HTTP 503) for minutes at a time.
+
+What the build does about it: it checks up to 30 questions per call (the PDF is sent once, not once per dozen: about half the
+tokens), stops asking a question once its vote is settled (same verdict, fewer calls), writes the concepts and rewrites failed
+questions side by side (`BUILD_WORKERS`), switches to the fallback model after 2 failed tries instead of 5, treats a used-up daily
+allowance as "switch now" instead of waiting, and can use a second checking model (`VERIFY_FALLBACK_MODEL`). The build report
+(`bank/<name>/build_report.md`) lists the seconds per stage and the tokens used. Opening the same PDF again is instant.
+
+What does not help much: asking a thinking model to think less (`GEN_REASONING`, `VERIFY_REASONING`). It halved the answer
+tokens in a test, but the answer is only a tenth of what a call costs, so it is off unless you set it.
+
+The real fix is a higher limit: putting a payment method on the Groq account (pay as you go, no monthly fee) lifts the limits
+many times over, and a build of a short PDF then costs a few cents. After that, raise `GROQ_RPM` and `BUILD_WORKERS` in `.env`.
+
 ## Configuration
 
 Everything is read from `.env` (copy `.env.example`). Environment variables win over `.env`, except the AI keys, which are
@@ -135,7 +156,7 @@ or a class session, not an exam left open for days (for that, use a host that st
   with the SHA256 in the release notes, make it executable and put it at `~/.cache/cloudflared/<version>/cloudflared` (or on your
   `PATH`, or set `CLOUDFLARED`).
 - Anyone with the address and an exam code can join, up to the exam's seat limit, so choose the seats with that in mind.
-- Stop it with Ctrl+C, or `kill $(cat data/web.pid)` if it runs in the background.
+- Stop it with Ctrl+C, or `./stop_web.sh` if it runs in the background.
 
 **On the internet.** Put it behind HTTPS (a reverse proxy or your host's TLS), then set `PUBLIC_URL`, `COOKIE_SECURE=1` and
 `TRUST_PROXY=1`. The safest layout is two instances on one machine over the same database file: a private `TUTOR_MODE=teacher` instance only the
