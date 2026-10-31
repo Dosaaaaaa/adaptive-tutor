@@ -22,6 +22,31 @@ export function QuestionsTab({ questions, concepts, selected, onSelect }: Props)
       <p className="note">
         Hardest first. Difficulty is measured from the students’ answers, not guessed. Round 3 questions were only seen by students who struggled earlier.
       </p>
+      <div className="detail" aria-live="polite">
+        {chosen ? (
+          <>
+            <header className="detail__head">
+              <h3>{chosen.stem}</h3>
+            </header>
+            <p className="note">{nameOf(chosen.concept_id)}. {chosen.n} {chosen.n === 1 ? "student" : "students"} answered.</p>
+            <ul className="picks">
+              {chosen.options.map((o) => {
+                const right = o.tag === "correct";
+                return (
+                  <li key={o.key} className="pick" data-right={right ? "true" : undefined}>
+                    <span className="pick__text">{o.text}</span>
+                    <span className="pick__kind">{right ? <><Icon name="check" size={14} />Right answer</> : o.label}</span>
+                    <span className="pick__count figure">{o.picked}</span>
+                    <Meter value={o.picked} max={Math.max(1, chosen.n)} label={`Students who chose ${o.key}`} />
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        ) : (
+          <p className="detail__hint">Select a question to see how often each answer was chosen.</p>
+        )}
+      </div>
       <div className="table-wrap" role="region" aria-label="Questions table" tabIndex={0}>
         <table className="table table--questions">
           <caption className="visually-hidden">Every question, hardest first</caption>
@@ -68,31 +93,6 @@ export function QuestionsTab({ questions, concepts, selected, onSelect }: Props)
         </table>
       </div>
 
-      <div className="detail" aria-live="polite">
-        {chosen ? (
-          <>
-            <header className="detail__head">
-              <h3>{chosen.stem}</h3>
-            </header>
-            <p className="note">{nameOf(chosen.concept_id)}. {chosen.n} {chosen.n === 1 ? "student" : "students"} answered.</p>
-            <ul className="picks">
-              {chosen.options.map((o) => {
-                const right = o.tag === "correct";
-                return (
-                  <li key={o.key} className="pick" data-right={right ? "true" : undefined}>
-                    <span className="pick__text">{o.text}</span>
-                    <span className="pick__kind">{right ? <><Icon name="check" size={14} />Right answer</> : o.label}</span>
-                    <span className="pick__count figure">{o.picked}</span>
-                    <Meter value={o.picked} max={Math.max(1, chosen.n)} label={`Students who chose ${o.key}`} />
-                  </li>
-                );
-              })}
-            </ul>
-          </>
-        ) : (
-          <p className="detail__hint">Select a question to see how often each answer was chosen.</p>
-        )}
-      </div>
     </div>
   );
 }
