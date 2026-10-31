@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <style>
+    .bg { fill: #1b2026; }
+    .ln { stroke: #8f9aa8; }
+    .a { fill: #f2c14e; }
+    .b { fill: #7fb6f2; }
+    @media (prefers-color-scheme: light) { .bg { fill: #f6f3ec; } .ln { stroke: #5c5a52; } .a { fill: #7a5a12; } .b { fill: #1f5fb0; } }
+  </style>
+  <rect class="bg" width="32" height="32" rx="7" />
+  <path class="ln" d="M9 21 L16 11 M16 11 L23 21" fill="none" stroke-width="2" stroke-linecap="round" />
+  <circle class="b" cx="9" cy="21" r="3.2" />
+  <circle class="a" cx="16" cy="11" r="3.6" />
+  <circle class="b" cx="23" cy="21" r="3.2" />
+</svg>

@@ -1,0 +1,12 @@
+/* Hallmark · shape: app screen · genre: modern-minimal · theme: Console (deal 3/3, seed adaptive-exam-prep-tutor-teacher-87ba·476e558a·2026-10-31·r0)
+ * nav: top bar with the wordmark, one link, colour mode and sign out · signature: the class concept map, left to right, shaped and coloured by status · states: loading, empty, error and full on every data region · console: graphite and paper colourways, paper amber and cool set to 49% lightness to clear 4.5:1 on their soft fills
+ * axes: light+dark/grotesk-sans/chromatic-amber · posture: restrained · contrast: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, a dashboard of cards and tables could belong to any school tool; made the concept map the spine of the class report, set every measured value in the mono face in one blue, and kept amber for people and the next action */
+@import "@fontsource-variable/host-grotesk/wght.css";
+@import "@fontsource/atkinson-hyperlegible-mono/latin-400.css";
+@import "@fontsource/atkinson-hyperlegible-mono/latin-700.css";
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./components.css";
+@import "./screens.css";

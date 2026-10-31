@@ -1,0 +1,72 @@
+/* Design tokens: scale, motion, type and colour. Colour has two modes: paper (light) and graphite (dark).
+   Light is the default; dark applies when the person picks it ([data-mode="dark"]) or, with no choice made, when their system is dark.
+   Every pairing used in the app was checked numerically in both modes (text 4.5:1, body ink 7:1, UI edges 3:1). */
+:root {
+  color-scheme: light dark;
+
+  /* space, a 4px-based scale */
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px;
+  --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+
+  /* type, 1.2 ratio from 16px */
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.2rem; --text-xl: 1.44rem; --text-2xl: 1.728rem; --text-3xl: 2.074rem;
+  --text-display-s: 1.44rem; --text-display: 1.728rem; --text-section: 1.2rem; --text-title: 1rem; --text-lead: 1rem;
+  --text-figure: 3.2rem;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+
+  /* layout */
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --measure: 44rem; --reading: 40rem;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+
+  /* type families: Host Grotesk for the interface, Atkinson Hyperlegible Mono for measured values */
+  --font-display: "Host Grotesk Variable", "Host Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: var(--font-display);
+  --font-outlier: "Atkinson Hyperlegible Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius-card: 10px; --radius-pill: 6px; --radius-ctl: 8px; --rule-hair: 1px;
+  --shadow-card: none;
+  --tracking-display: -0.03em; --display-weight: 500;
+
+  /* paper (light) */
+  --color-paper: oklch(98% 0.006 85); --color-paper-2: oklch(96% 0.007 85); --color-paper-3: oklch(93% 0.009 85);
+  --color-ink: oklch(19% 0.010 60); --color-ink-2: oklch(32% 0.012 60); --color-muted: oklch(46% 0.012 60);
+  --color-rule: oklch(88% 0.008 85); --color-rule-2: oklch(60% 0.012 85);
+  --color-accent: oklch(49% 0.12 70); --color-accent-ink: oklch(98% 0.012 85); --color-accent-soft: oklch(93% 0.05 80); --color-focus: oklch(49% 0.12 70);
+  --color-cool: oklch(49% 0.14 250); --color-cool-soft: oklch(93% 0.035 250);
+  --color-ok: oklch(46% 0.13 150); --color-ok-soft: oklch(94% 0.04 150);
+  --color-bad: oklch(48% 0.17 25); --color-bad-soft: oklch(94% 0.035 25);
+}
+
+/* graphite (dark), chosen */
+:root[data-mode="dark"] {
+  color-scheme: dark;
+  --color-paper: oklch(17% 0.008 250); --color-paper-2: oklch(21% 0.009 250); --color-paper-3: oklch(13.5% 0.007 250);
+  --color-ink: oklch(95% 0.005 250); --color-ink-2: oklch(83% 0.008 250); --color-muted: oklch(71% 0.01 250);
+  --color-rule: oklch(31% 0.01 250); --color-rule-2: oklch(52% 0.012 250);
+  --color-accent: oklch(82% 0.15 80); --color-accent-ink: oklch(18% 0.04 75); --color-accent-soft: oklch(29% 0.05 80); --color-focus: oklch(82% 0.15 80);
+  --color-cool: oklch(77% 0.12 245); --color-cool-soft: oklch(29% 0.05 245);
+  --color-ok: oklch(76% 0.15 150); --color-ok-soft: oklch(24.5% 0.03 150);
+  --color-bad: oklch(70% 0.17 25); --color-bad-soft: oklch(24.5% 0.035 25);
+}
+
+/* graphite (dark), by the system setting when nothing was chosen */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-mode]) {
+    --color-paper: oklch(17% 0.008 250); --color-paper-2: oklch(21% 0.009 250); --color-paper-3: oklch(13.5% 0.007 250);
+    --color-ink: oklch(95% 0.005 250); --color-ink-2: oklch(83% 0.008 250); --color-muted: oklch(71% 0.01 250);
+    --color-rule: oklch(31% 0.01 250); --color-rule-2: oklch(52% 0.012 250);
+    --color-accent: oklch(82% 0.15 80); --color-accent-ink: oklch(18% 0.04 75); --color-accent-soft: oklch(29% 0.05 80); --color-focus: oklch(82% 0.15 80);
+    --color-cool: oklch(77% 0.12 245); --color-cool-soft: oklch(29% 0.05 245);
+    --color-ok: oklch(76% 0.15 150); --color-ok-soft: oklch(24.5% 0.03 150);
+    --color-bad: oklch(70% 0.17 25); --color-bad-soft: oklch(24.5% 0.035 25);
+  }
+}
+
+/* roles that read the colours above: status never gets a colour of its own */
+:root {
+  --color-warn: var(--color-accent); --color-warn-soft: var(--color-accent-soft);
+  --color-error: var(--color-bad); --color-success: var(--color-ok);
+  --color-track: var(--color-paper-3);
+}

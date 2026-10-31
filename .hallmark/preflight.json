@@ -1,0 +1,21 @@
+{
+  "scanned": "2026-10-31",
+  "findings": {
+    "fonts": "none in web/ yet (the legacy Streamlit apps use Streamlit's default sans)",
+    "palette": "legacy: Streamlit primaryColor #2563eb; status colours green #2e9e5b, amber #d9822b, red #d64545 in ui/common.py",
+    "motion": "none",
+    "spacing": "none",
+    "framework": "React 19 + Vite + TypeScript in web/ (web/package.json), FastAPI serves the build"
+  },
+  "preserve": [
+    "the three status meanings: understood, shaky, missing (green, amber, red), now also carried by words and shape, not colour alone",
+    "the screens and their data (every field the Streamlit apps show)"
+  ],
+  "introduce": [
+    "scope: app",
+    "a dealt theme with tokens",
+    "four states per data region",
+    "a signature object: the concept map",
+    "light and dark"
+  ]
+}

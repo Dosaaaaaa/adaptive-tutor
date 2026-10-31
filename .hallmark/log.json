@@ -1,0 +1,28 @@
+[
+ {
+  "shape": "app screen",
+  "theme": "Console",
+  "axes": "light+dark/grotesk-sans/chromatic-amber",
+  "hero": "front door: heading, one code field, one action; teacher aside on a hairline",
+  "nav": "top bar: wordmark, one link, colour mode, sign out",
+  "footer": "one line about what is stored, student screens only",
+  "imagery": "none; the concept map is the picture",
+  "photos": [],
+  "entry": "scaffold console --scope app",
+  "fingerprint": "app/console/two-column-workspace/map-first-report",
+  "sections": [
+   "front door",
+   "join",
+   "exam",
+   "results",
+   "teacher exams",
+   "class report"
+  ],
+  "signature": "the class concept map, left to right, shaped and coloured by status",
+  "waived": [],
+  "prompt": "adaptive exam-prep tutor web app: student exam and teacher class report",
+  "scope": "app",
+  "date": "2026-10-31",
+  "mode": "build"
+ }
+]

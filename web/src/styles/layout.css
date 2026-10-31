@@ -1,0 +1,65 @@
+/* The frame: top bar, page column, footer and the few page-level grids. */
+
+#root { min-height: 100vh; }
+.app { display: flex; flex-direction: column; min-height: 100vh; }
+
+.skip {
+  position: absolute; left: var(--space-md); top: -4rem; z-index: var(--z-toast);
+  padding: var(--space-xs) var(--space-md); border-radius: var(--radius-ctl);
+  background: var(--color-accent); color: var(--color-accent-ink); font-weight: 600; text-decoration: none;
+}
+.skip:focus { top: var(--space-md); }
+
+/* top bar */
+.topbar { position: sticky; top: 0; z-index: var(--z-sticky-nav); background: var(--color-paper); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.topbar__in { display: flex; align-items: center; gap: var(--space-lg); min-height: 3.5rem; padding-block: var(--space-xs); flex-wrap: wrap; }
+.topbar__nav { display: flex; gap: var(--space-md); margin-right: auto; }
+.topbar__tools { display: flex; align-items: center; gap: var(--space-sm); margin-left: auto; }
+.topbar__nav + .topbar__tools { margin-left: 0; }
+.topbar__link { padding: var(--space-xs) 0; color: var(--color-muted); text-decoration: none; font-weight: 500; border-bottom: 2px solid transparent; }
+.topbar__link:hover { color: var(--color-ink); }
+.topbar__link[aria-current="page"] { color: var(--color-ink); font-weight: 600; border-bottom-color: var(--color-accent); }
+
+.brand { display: inline-flex; align-items: center; gap: var(--space-xs); color: var(--color-ink); text-decoration: none; font-weight: 600; letter-spacing: -0.01em; }
+.brand__link { stroke: var(--color-rule-2); }
+.brand__node { fill: var(--color-cool); }
+.brand__you { fill: var(--color-accent); }
+.brand:hover .brand__name { text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* page column */
+.page { flex: 1; padding-block: var(--space-xl) var(--space-2xl); outline: none; }
+.page--narrow { max-width: calc(var(--measure) + var(--gutter) * 2); }
+.page > * + * { margin-top: var(--space-xl); }
+.page > .crumb + * { margin-top: var(--space-md); }
+.page__head > * + * { margin-top: var(--space-xs); }
+.page__head h1 { max-width: none; }
+.lead { color: var(--color-ink-2); }
+.after { margin-top: var(--space-lg); color: var(--color-ink-2); }
+.foot { border-top: var(--rule-hair) solid var(--color-rule); padding-block: var(--space-md); color: var(--color-muted); font-size: var(--text-sm); }
+.crumb { margin: 0; font-size: var(--text-sm); }
+.crumb a { display: inline-flex; align-items: center; gap: var(--space-2xs); color: var(--color-ink-2); }
+
+/* the front door */
+.door { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--space-2xl); align-items: start; padding-top: var(--space-xl); }
+.door__main > * + * { margin-top: var(--space-md); }
+.door__main h1 { font-size: var(--text-3xl); max-width: 14ch; }
+.door__form { display: grid; gap: var(--space-md); justify-items: start; margin-top: var(--space-lg); }
+.door__aside { padding-left: var(--space-xl); border-left: var(--rule-hair) solid var(--color-rule); display: grid; gap: var(--space-sm); justify-items: start; }
+.door__aside p { color: var(--color-ink-2); }
+
+/* the teacher's home */
+.workspace { display: grid; grid-template-columns: minmax(0, 24rem) minmax(0, 1fr); gap: var(--gap-columns); align-items: start; }
+.workspace > section > * + * { margin-top: var(--space-md); }
+.workspace__new { position: sticky; top: 4.5rem; padding: var(--space-lg); border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-card); background: var(--color-paper-2); color: var(--color-ink); }
+.exams { display: grid; gap: var(--space-md); }
+
+@media (max-width: 60rem) {
+  .door { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+  .door__aside { padding-left: 0; padding-top: var(--space-lg); border-left: 0; border-top: var(--rule-hair) solid var(--color-rule); }
+  .workspace { grid-template-columns: minmax(0, 1fr); }
+  .workspace__new { position: static; }
+}
+@media (max-width: 40rem) {
+  .topbar__in { gap: var(--space-sm); }
+  .page { padding-block: var(--space-lg) var(--space-xl); }
+}
