@@ -16,6 +16,7 @@ The six functions, and nothing else (`SPEC.md` section 0):
 5. All students' data in one database.
 6. The weak concepts of the whole class, for the teacher.
 
+Working live- "https://speaks-warrior-shortly-conversations.trycloudflare.com/"
 ## Run it
 
 You need Python 3.12+ and Node 22+.
