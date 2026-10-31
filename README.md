@@ -73,6 +73,9 @@ ui/      The original Streamlit apps, kept working for comparison. The web app r
   the **class concept map**, drawn left to right so prerequisites come first. State is kept in the address (tab, filters,
   chosen concept), so a reload or a shared link shows the same view. The teacher's screens load as separate chunks, so
   students download about 93 kB of script (gzip).
+- **Opening screen.** The logo draws itself and holds for 4 seconds, once per browser tab (a reload does not wait for it, so
+  an exam in progress is never delayed). It can be skipped with the button, Escape or a click. Add `?splash=1` to an address
+  to see it again, `?splash=0` to hide it. With reduced motion it shows the finished logo without animating.
 
 ### Checked
 
@@ -122,15 +125,22 @@ talking to each other; a phone hotspot or a home router does not.
 `TRUST_PROXY=1`. The safest layout is two instances on one machine over the same database file: a private `TUTOR_MODE=teacher` instance only the
 teacher can reach, and a public `TUTOR_MODE=student` instance that carries only the exam link.
 
-**Publish the code to GitHub** (nothing is pushed until you do it):
+## Working together
 
 ```bash
-git remote add origin https://github.com/<you>/<repo>.git
-git push -u origin main
+git clone https://github.com/Dosaaaaaa/adaptive-tutor.git && cd adaptive-tutor
+python3 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt -r requirements-streamlit.txt
+cp .env.example .env        # each person uses their own .env with their own free AI keys
+cd web && npm ci && npm run build && cd ..
+.venv/bin/pytest -q && (cd web && npm test)
 ```
 
-`.env`, `data/`, uploaded PDFs and teacher-built quizzes are git-ignored. CI (`.github/workflows/ci.yml`) runs the Python
-tests and the front end's types, tests and build on pushes to `main` and `exp` and on pull requests.
+- Work on a branch and open a pull request into `main`. CI (`.github/workflows/ci.yml`) runs the Python tests and the front
+  end's types, tests and build on every push to `main` and on every pull request; please wait for it to pass.
+- **Never commit `.env`.** It, `data/`, uploaded PDFs and teacher-built quizzes (`bank/exam_*`) are git-ignored. If a key is ever
+  pasted somewhere by mistake, revoke it and make a new one.
+- `tutor/` is the brain and its behaviour is specified in `SPEC.md`; change it only with a matching change to the spec and tests.
+  The six functions in `SPEC.md` section 0 are the whole scope.
 
 ## Privacy
 

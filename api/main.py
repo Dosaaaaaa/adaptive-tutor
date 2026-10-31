@@ -86,7 +86,7 @@ def _mount_web(app: FastAPI, dist: Path) -> None:
             raise HTTPException(404, "Not found.")
         candidate = (dist / path).resolve()
         if path and candidate.is_file() and root in candidate.parents:       # favicon, robots.txt, fonts
-            return FileResponse(candidate)
+            return FileResponse(candidate, headers={"Cache-Control": "no-cache"})
         return FileResponse(index, headers={"Cache-Control": "no-cache"})     # every other path is a page of the app
 
 

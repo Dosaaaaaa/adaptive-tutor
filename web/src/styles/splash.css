@@ -1,0 +1,63 @@
+/* Hallmark · component: splash · genre: modern-minimal · theme: Console · states: 8 · contrast: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, a logo centred on a plain ground is how every app opens; made the mark draw itself as the product's own graph with the amber learner arriving last, and ran the 4 seconds as one hairline in the measuring blue */
+
+/* The opening screen. It lives in index.html, so it is on screen at the first paint, before any script runs, and its 4 seconds
+   are kept by this stylesheet alone: with scripting off it still leaves after 4 seconds. Every animation starts from its hidden
+   state and ends in the natural one, so a browser that plays none shows the finished logo. */
+.splash {
+  --splash-hold: 4s; --splash-fade: var(--dur-short);
+  position: fixed; inset: 0; z-index: var(--z-tooltip); display: grid; place-items: center;
+  background: var(--color-paper); color: var(--color-ink);
+  animation: splash-out var(--splash-fade) var(--ease-in) var(--splash-hold) forwards, splash-gone 1ms step-end calc(var(--splash-hold) + var(--splash-fade)) forwards;
+}
+html[data-splash="skip"] .splash { display: none; }
+.splash.is-leaving { animation: splash-leave var(--splash-fade) var(--ease-in) forwards, splash-gone 1ms step-end var(--splash-fade) forwards; }   /* its own name, so it starts afresh instead of jumping to the end of the timed one */
+
+.splash__stage { padding: var(--space-lg) var(--gutter); }
+.splash__lockup { display: flex; align-items: center; gap: var(--space-xl); }
+.splash__mark { flex: none; width: clamp(5rem, 11vw, 8.5rem); height: auto; overflow: visible; }
+.splash__text { display: grid; gap: var(--space-2xs); }
+.splash__name {
+  max-width: none; font-size: clamp(var(--text-3xl), 4.2vw, var(--text-figure)); font-weight: var(--display-weight); letter-spacing: var(--tracking-display); line-height: 1.05;
+  animation: splash-rise var(--dur-long) var(--ease-out) 560ms backwards;
+}
+.splash__tag { margin: 0; color: var(--color-muted); font-size: var(--text-lg); animation: splash-rise var(--dur-long) var(--ease-out) 640ms backwards; }
+
+/* the mark: two prerequisites feed one concept; the learner (amber) arrives last */
+.splash__line {
+  fill: none; stroke: var(--color-rule-2); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 1;
+  animation: splash-draw var(--dur-long) var(--ease-out) backwards;
+}
+.splash__line--a { animation-delay: 120ms; }
+.splash__line--b { animation-delay: 180ms; }
+.splash__base, .splash__you { transform-box: fill-box; transform-origin: center; animation: splash-pop var(--dur-short) var(--ease-out) backwards; }
+.splash__base { fill: var(--color-cool); }
+.splash__base--b { animation-delay: 60ms; }
+.splash__you { fill: var(--color-accent); animation-delay: 480ms; }
+
+/* the 4 seconds, as a measured line along the bottom edge, and the way out */
+.splash__bar { position: absolute; inset: auto 0 0 0; height: 2px; background: var(--color-track); }
+.splash__bar span { display: block; height: 100%; background: var(--color-cool); transform-origin: left center; animation: splash-time 4s linear backwards; }
+.splash__skip { position: absolute; right: var(--gutter); bottom: var(--space-lg); animation: splash-rise var(--dur-short) var(--ease-out) 600ms backwards; }
+
+@keyframes splash-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes splash-pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
+@keyframes splash-rise { from { opacity: 0; transform: translateY(0.4rem); } to { opacity: 1; transform: none; } }
+@keyframes splash-time { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes splash-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes splash-leave { from { opacity: 1; } to { opacity: 0; } }
+@keyframes splash-gone { to { visibility: hidden; } }   /* a step of its own: an eased fade ends a hair short of its last value, which would leave the screen there */
+
+@media (max-width: 40rem) {
+  .splash__lockup { flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+  .splash__mark { width: 5.5rem; }
+  .splash__name { font-size: var(--text-3xl); }
+  .splash__tag { font-size: var(--text-md); }
+}
+
+/* reduced motion: the finished logo is shown at once and held for the same 4 seconds; only the exit is a short fade */
+@media (prefers-reduced-motion: reduce) {
+  .splash__line, .splash__base, .splash__you, .splash__name, .splash__tag, .splash__skip, .splash__bar span { animation: none; }
+  .splash__bar { display: none; }
+  .splash { --splash-fade: 150ms; }
+}

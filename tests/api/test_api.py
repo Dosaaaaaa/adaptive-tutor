@@ -365,7 +365,8 @@ def test_the_front_end_is_served_with_the_right_caching_and_cannot_read_other_fi
     assert "<title>app</title>" in page.text and page.headers["cache-control"] == "no-cache"
     asset = c.get("/assets/app-abc123.js")
     assert asset.status_code == 200 and "immutable" in asset.headers["cache-control"]
-    assert c.get("/robots.txt").text == "User-agent: *"
+    robots = c.get("/robots.txt")
+    assert robots.text == "User-agent: *" and robots.headers["cache-control"] == "no-cache"      # not content-hashed, so browsers must re-check it
     for sneaky in ("/..%2fsecret.txt", "/%2e%2e/secret.txt", "/assets/../../secret.txt"):
         assert "top secret" not in c.get(sneaky).text, sneaky
     assert c.get("/api/does-not-exist").status_code == 404

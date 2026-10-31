@@ -10,6 +10,26 @@
     <script src="/theme-init.js"></script>
   </head>
   <body>
+    <!-- The opening logo screen: on screen at the first paint, gone after 4 seconds (see src/styles/splash.css and src/splash.ts). -->
+    <div class="splash keep-motion" id="splash" role="region" aria-label="Opening screen">
+      <div class="splash__stage">
+        <div class="splash__lockup">
+          <svg class="splash__mark" viewBox="0 0 24 24" role="img" aria-label="Adaptive Tutor logo" focusable="false">
+            <path class="splash__line splash__line--a" pathLength="1" d="M6 17.5L12 7.5" />
+            <path class="splash__line splash__line--b" pathLength="1" d="M18 17.5L12 7.5" />
+            <circle class="splash__base splash__base--a" cx="6" cy="17.5" r="2.6" />
+            <circle class="splash__base splash__base--b" cx="18" cy="17.5" r="2.6" />
+            <circle class="splash__you" cx="12" cy="7.5" r="3" />
+          </svg>
+          <div class="splash__text">
+            <h1 class="splash__name">Adaptive Tutor</h1>
+            <p class="splash__tag">Records what each student knows.</p>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn--quiet btn--small splash__skip">Skip</button>
+      <div class="splash__bar" aria-hidden="true"><span></span></div>
+    </div>
     <div id="root"></div>
     <noscript>
       <p style="padding: 2rem; font-family: system-ui, sans-serif">This exam tool needs JavaScript. Please turn it on in your browser and reload the page.</p>
