@@ -63,8 +63,11 @@ def _link_base(request: Request) -> str:
     if s.public_url:
         return s.public_url
     host, port = request.url.hostname, request.url.port
+    port = s.student_port or port                                    # the student-only instance may listen on another port
     if host in ("localhost", "127.0.0.1", "::1"):                    # students cannot use "localhost": show this computer's address
         return f"{request.url.scheme}://{exams.lan_ip()}" + (f":{port}" if port else "")
+    if s.student_port:
+        return f"{request.url.scheme}://{host}:{port}"
     return str(request.base_url).rstrip("/")
 
 

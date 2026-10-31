@@ -227,6 +227,35 @@ def test_a_student_only_instance_has_no_teacher_routes_at_all(env, bank):
 
 # ======================= teacher =======================
 
+def _teacher_at(env, base_url, **kw):
+    c = TestClient(create_app(Settings(mode="teacher", teacher_password=PASSWORD, session_secret=SECRET, web_dist=env / "no-dist", **kw)), base_url=base_url)
+    assert c.post("/api/auth/login", json={"password": PASSWORD}).status_code == 200
+    return c
+
+
+def test_a_private_teacher_instance_shows_links_that_point_at_the_student_port(env, monkeypatch):
+    monkeypatch.setattr(exams, "lan_ip", lambda: "192.168.1.20")
+    c = _teacher_at(env, "http://localhost:8081", student_port=8080)
+    assert c.get("/api/system").json()["link_base"] == "http://192.168.1.20:8080"            # this computer's address, the student port
+    assert _teacher_at(env, "http://localhost:8081").get("/api/system").json()["link_base"] == "http://192.168.1.20:8081"   # no student port: its own
+    assert _teacher_at(env, "http://school-laptop:8081", student_port=8080).get("/api/system").json()["link_base"] == "http://school-laptop:8080"
+    assert _teacher_at(env, "http://localhost:8081", student_port=8080, public_url="https://exams.example.org").get("/api/system").json()["link_base"] == "https://exams.example.org"
+
+
+def test_the_student_port_setting_is_validated(monkeypatch, tmp_path):
+    from api.settings import load_settings
+
+    monkeypatch.setattr(config, "ENV_FILE", tmp_path / ".env")
+    monkeypatch.setenv("STUDENT_PORT", "8080")
+    assert load_settings(session_secret=SECRET).student_port == 8080
+    for bad in ("eighty", "0", "70000", "-1"):
+        monkeypatch.setenv("STUDENT_PORT", bad)
+        with pytest.raises(ValueError, match="STUDENT_PORT"):
+            load_settings(session_secret=SECRET)
+    monkeypatch.delenv("STUDENT_PORT")
+    assert load_settings(session_secret=SECRET).student_port is None
+
+
 def test_the_teacher_creates_an_exam_from_a_bank_and_sees_it_listed(env):
     c = client(env, logged_in=True)
     sys_ = c.get("/api/system").json()

@@ -9,7 +9,7 @@ concept, finds misconceptions, scores each student and shows the class where it 
 
 ## Commands
 - Tests: `.venv/bin/pytest -q` and `cd web && npm test`
-- Web app: `.venv/bin/uvicorn api.main:app --port 8080` (serves `web/dist`). Streamlit: `./run.sh`
+- Web app, one server: `.venv/bin/uvicorn api.main:app --port 8080` (serves `web/dist`). For a class: `./run_web.sh` (students :8080 on the network, teacher :8081 private). Streamlit: `./run.sh`
 - Keys live only in `.env`. Never print or commit them.
 
 ## Rules

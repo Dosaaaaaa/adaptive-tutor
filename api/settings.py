@@ -19,6 +19,7 @@ class Settings:
     mode: str = "all"                       # all: both | teacher: private instance | student: public exam link only
     teacher_password: str | None = None
     public_url: str | None = None           # for example a tunnel or the school's address
+    student_port: int | None = None         # the port of the student-only instance, so a private teacher instance shows links students can open
     cookie_secure: bool = False             # set to true behind HTTPS
     allowed_origins: tuple[str, ...] = ()   # extra origins allowed to send state-changing requests
     session_secret: bytes = b""
@@ -47,10 +48,14 @@ def load_settings(**overrides) -> Settings:
     mode = get("TUTOR_MODE", "all")
     if mode not in MODES:
         raise ValueError(f"TUTOR_MODE must be one of {MODES}, not {mode!r}")
+    student_port = str(get("STUDENT_PORT", "")).strip()
+    if student_port and not (student_port.isdigit() and 1 <= int(student_port) <= 65535):
+        raise ValueError(f"STUDENT_PORT must be a port number from 1 to 65535, not {student_port!r}")
     base = Settings(
         mode=mode,
         teacher_password=get("TEACHER_PASSWORD"),
         public_url=(get("PUBLIC_URL") or "").rstrip("/") or None,
+        student_port=int(student_port) if student_port else None,
         cookie_secure=flag("COOKIE_SECURE"),
         allowed_origins=tuple(o.strip().rstrip("/") for o in str(get("ALLOWED_ORIGINS", "")).split(",") if o.strip()),
         session_secret=b"",

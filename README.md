@@ -48,6 +48,7 @@ read **only** from `.env` so a stray key in your shell can never be used by acci
 | `GEMINI_API_KEY`, `GROQ_API_KEY`, `OPENROUTER_API_KEY` | Free AI keys for building quizzes and judging reasons. |
 | `TUTOR_MODE` | `all` (default), `teacher`, or `student`. A `student` instance has **no teacher routes at all** (they answer 404). |
 | `PUBLIC_URL` | The address students use, so the shared links are right. |
+| `STUDENT_PORT` | Port of the student-only instance. A private teacher instance then shows links to that port on this computer's current address. |
 | `COOKIE_SECURE`, `TRUST_PROXY` | Set both to `1` behind HTTPS and your own reverse proxy. |
 | `ALLOWED_ORIGINS` | Extra origins allowed to send state-changing requests. |
 | `SESSION_SECRET` | Signs the teacher's session. Otherwise one is generated and kept in `data/session.key`. |
@@ -103,6 +104,19 @@ The image is about 180 MB. It was built and run end to end for this repo: the ap
 and CSV came back, and cross-site requests were refused. The container runs as a non-root user (uid 1000 by default) and reads `.env` from the mounted file. If your own user id is
 not 1000, build with `--build-arg APP_UID=$(id -u)` (compose: `APP_UID=$(id -u) docker compose up --build`), otherwise it cannot
 read a private `.env`.
+
+**A class on one Wi-Fi.** `./run_web.sh` starts two servers over the same database:
+
+- **Students:** `http://<this computer's address>:8080/e/CODE`. This server listens on the network and carries only the exam
+  link: it has no teacher pages at all (they answer 404).
+- **Teacher:** `http://localhost:8081`. This server listens on this computer only and asks for the password. Its exam cards
+  show the student link with the computer's *current* address, so it stays right if the Wi-Fi changes.
+
+If a phone cannot open the link although this computer can, the usual cause is the computer's firewall (on Ubuntu, `ufw` drops
+incoming connections by default). Allow the class network on port 8080 only, for example
+`sudo ufw allow from 10.83.254.0/24 to any port 8080 proto tcp` (use your own subnet), and remove it afterwards with
+`sudo ufw delete allow from 10.83.254.0/24 to any port 8080 proto tcp`. Some guest and school networks also block devices from
+talking to each other; a phone hotspot or a home router does not.
 
 **On the internet.** Put it behind HTTPS (a reverse proxy or your host's TLS), then set `PUBLIC_URL`, `COOKIE_SECURE=1` and
 `TRUST_PROXY=1`. The safest layout is two instances on one machine over the same database file: a private `TUTOR_MODE=teacher` instance only the
