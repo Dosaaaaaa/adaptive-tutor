@@ -4,6 +4,7 @@ from __future__ import annotations
 import csv
 import hmac
 import io
+import os
 import sqlite3
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, Response, UploadFile
@@ -58,10 +59,24 @@ def _exam_or_404(conn: sqlite3.Connection, code: str) -> dict:
     return exam
 
 
+def _published_address() -> str | None:
+    """The public https address that ./run_web.sh --public wrote to data/public_url while its tunnel is up.
+    The file holds the address and the tunnel's process id; if that process is gone the address is dead and is ignored."""
+    try:
+        address, _, pid = (config.DATA_DIR / "public_url").read_text(encoding="utf-8").strip().partition("\n")
+        if pid.strip().isdigit():
+            os.kill(int(pid.strip()), 0)                             # raises if the tunnel is no longer running
+        return address.strip().rstrip("/") if address.strip().startswith("https://") else None
+    except (OSError, ValueError):
+        return None
+
+
 def _link_base(request: Request) -> str:
     s = request.app.state.settings
     if s.public_url:
         return s.public_url
+    if live := _published_address():
+        return live
     host, port = request.url.hostname, request.url.port
     port = s.student_port or port                                    # the student-only instance may listen on another port
     if host in ("localhost", "127.0.0.1", "::1"):                    # students cannot use "localhost": show this computer's address

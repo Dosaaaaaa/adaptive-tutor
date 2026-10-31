@@ -151,6 +151,7 @@ or a class session, not an exam left open for days (for that, use a host that st
   the internet. What protects it: the teacher password (use a long one), 5 sign-in tries a minute per address, an https-only
   session cookie, and the checks on every request. Anyone who gets in can read every exam, so treat the password like a key.
 - `./run_web.sh --public-students` tunnels only the student server. The teacher stays on this computer at `http://localhost:8081`.
+- The launcher keeps each server and the tunnel running: if one stops it starts again a second later, so `kill`ing the server to load new code does not take the public link down. A tunnel that does have to be reopened gets a new address, which the exam cards then show (`data/public_url`).
 
 - Install the tool once: download `cloudflared-linux-amd64` from <https://github.com/cloudflare/cloudflared/releases>, compare it
   with the SHA256 in the release notes, make it executable and put it at `~/.cache/cloudflared/<version>/cloudflared` (or on your

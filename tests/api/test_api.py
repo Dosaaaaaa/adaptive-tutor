@@ -242,6 +242,23 @@ def test_a_private_teacher_instance_shows_links_that_point_at_the_student_port(e
     assert _teacher_at(env, "http://localhost:8081", student_port=8080, public_url="https://exams.example.org").get("/api/system").json()["link_base"] == "https://exams.example.org"
 
 
+def test_the_address_a_running_tunnel_wrote_to_a_file_is_the_student_link_until_the_tunnel_stops(env, monkeypatch):
+    import os
+
+    (config.DATA_DIR).mkdir(parents=True, exist_ok=True)
+    c = _teacher_at(env, "http://localhost:8081", student_port=8080)
+    monkeypatch.setattr(exams, "lan_ip", lambda: "192.168.1.20")
+    (config.DATA_DIR / "public_url").write_text(f"https://quiet-river.trycloudflare.com\n{os.getpid()}\n")       # a process that is running
+    assert c.get("/api/system").json()["link_base"] == "https://quiet-river.trycloudflare.com"
+    (config.DATA_DIR / "public_url").write_text("https://quiet-river.trycloudflare.com\n2147483000\n")           # a tunnel that is gone
+    assert c.get("/api/system").json()["link_base"] == "http://192.168.1.20:8080"
+    (config.DATA_DIR / "public_url").write_text("http://not-https.example\n")
+    assert c.get("/api/system").json()["link_base"] == "http://192.168.1.20:8080"
+    (config.DATA_DIR / "public_url").unlink()
+    assert c.get("/api/system").json()["link_base"] == "http://192.168.1.20:8080"
+    assert _teacher_at(env, "http://localhost:8081", public_url="https://set-by-hand.example").get("/api/system").json()["link_base"] == "https://set-by-hand.example"
+
+
 def test_the_student_port_setting_is_validated(monkeypatch, tmp_path):
     from api.settings import load_settings
 
