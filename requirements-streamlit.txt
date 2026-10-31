@@ -1,0 +1,3 @@
+# Only for the legacy Streamlit apps in ui/ (the web app does not need them)
+-r requirements.txt
+streamlit>=1.40

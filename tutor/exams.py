@@ -97,7 +97,7 @@ def reopen_exam(conn: sqlite3.Connection, code: str) -> None:
     update_exam(conn, code, status="ready", closed_at=None)
 
 
-def join_exam(conn: sqlite3.Connection, code: str, nickname: str) -> str:
+def join_exam(conn: sqlite3.Connection, code: str, nickname: str, *, student_id: str | None = None) -> str:
     """A student uses the link: check the exam, the free places and the nickname, then start them in the brain."""
     exam = get_exam(conn, code)
     if exam is None:
@@ -115,7 +115,7 @@ def join_exam(conn: sqlite3.Connection, code: str, nickname: str) -> str:
     used = counts(conn, exam["code"])["joined"]
     if used >= exam["max_students"]:
         raise ExamError(f"This exam is full ({used} of {exam['max_students']} places are taken). Please ask your teacher.")
-    sid = service.join(conn, nickname, exam["code"])          # the brain starts the student; raises on an empty nickname
+    sid = service.join(conn, nickname, exam["code"], student_id=student_id)   # the brain starts the student
     with conn:
         conn.execute("UPDATE students SET exam_code=? WHERE id=?", (exam["code"], sid))
     if counts(conn, exam["code"])["joined"] > exam["max_students"]:   # two students took the last place at once
@@ -141,6 +141,19 @@ def delete_exam(conn: sqlite3.Connection, code: str) -> int:
             conn.execute(f"DELETE FROM answers WHERE student_id IN ({marks})", ids)
             conn.execute(f"DELETE FROM students WHERE id IN ({marks})", ids)
         conn.execute("DELETE FROM exams WHERE code=?", (exam["code"],))
+    return len(ids)
+
+
+def clear_simulated_in(conn: sqlite3.Connection, code: str) -> int:
+    """Delete only the simulated (test) students of one exam. Real students are never touched."""
+    ids = [r[0] for r in conn.execute("SELECT id FROM students WHERE exam_code=? AND is_simulated=1", (normalize(code),))]
+    if ids:
+        marks = ",".join("?" * len(ids))
+        with conn:
+            conn.execute(f"DELETE FROM judgements WHERE answer_id IN (SELECT id FROM answers WHERE student_id IN ({marks}))", ids)
+            conn.execute(f"DELETE FROM mastery_log WHERE student_id IN ({marks})", ids)
+            conn.execute(f"DELETE FROM answers WHERE student_id IN ({marks})", ids)
+            conn.execute(f"DELETE FROM students WHERE id IN ({marks})", ids)
     return len(ids)
 
 

@@ -1,5 +1,7 @@
+# Runtime: the brain and the web API
 pydantic>=2.7
 requests>=2.32
 pymupdf>=1.24
-pytest>=8
-streamlit>=1.40
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
