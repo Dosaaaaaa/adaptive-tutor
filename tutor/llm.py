@@ -30,6 +30,7 @@ REQUEST_TIMEOUT = 180    # slow thinking models can take over a minute
 COOLDOWN_SECONDS = 180   # after a provider fails, go straight to the fallback for this long; it doubles while the failure repeats
 MAX_COOLDOWN = 1800      # ...up to this long
 FAILOVER_ATTEMPTS = 2    # with a fallback configured, a failing provider gets this many tries before the fallback takes over
+QUOTA_WAIT_MAX = 90      # a used-up allowance that the provider says will free up within this many seconds is waited for, not given up on
 
 
 class LLMError(Exception):
@@ -112,7 +113,24 @@ def _wait_text(seconds: float | None) -> str:
     if not seconds or seconds < 1:
         return "a little while"
     m, s = divmod(int(round(seconds)), 60)
-    return f"{m} min {s} s" if m else f"{s} s"
+    h, m = divmod(m, 60)
+    return f"{h} h {m} min" if h else (f"{m} min {s} s" if m else f"{s} s")
+
+
+def _retry_hint(headers, text: str) -> float | None:
+    """How long the provider says to wait, in seconds: the Retry-After header, Gemini's "retryDelay": "55s" in the body,
+    or Groq's "Please try again in 2m40.7s" in the message."""
+    try:
+        return float(headers.get("Retry-After", ""))
+    except (TypeError, ValueError, AttributeError):
+        pass
+    t = text or ""
+    if m := re.search(r'"retryDelay"\s*:\s*"(\d+(?:\.\d+)?)s"', t):
+        return float(m.group(1))
+    if m := re.search(r"try again in\s+((?:\d+(?:\.\d+)?\s*[hms]\s*)+)", t, re.I):
+        parts = re.findall(r"(\d+(?:\.\d+)?)\s*([hms])", m.group(1), re.I)
+        return sum(float(n) * {"h": 3600, "m": 60, "s": 1}[u.lower()] for n, u in parts)
+    return None
 
 
 class LLM:
@@ -291,11 +309,14 @@ class LLM:
                     self._json_mode = False
                 continue
             if r.status_code in (429, 500, 502, 503, 504):
-                try:
-                    retry_after = float(r.headers.get("Retry-After", ""))
-                except (TypeError, ValueError):
-                    retry_after = None
-                if r.status_code == 429 and _is_daily_quota(r.text):   # the day's allowance: no point in waiting seconds
+                retry_after = _retry_hint(r.headers, r.text) if r.status_code == 429 else None
+                if retry_after is None:
+                    try:
+                        retry_after = float(r.headers.get("Retry-After", ""))
+                    except (TypeError, ValueError):
+                        retry_after = None
+                # the day's allowance is a rolling window: a short wait is waited for like any other limit, a long one is not
+                if r.status_code == 429 and _is_daily_quota(r.text) and not (retry_after is not None and retry_after <= QUOTA_WAIT_MAX):
                     raise LLMQuotaError(f"{self.provider.name}: the free daily limit for {self.model} is used up. "
                                         f"The provider says to try again in {_wait_text(retry_after)}.", retry_after)
                 failures += 1

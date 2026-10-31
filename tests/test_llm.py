@@ -205,6 +205,36 @@ def test_a_used_up_daily_limit_without_a_fallback_says_so_in_plain_words(tmp_pat
     assert clock.sleeps == [] and len(ai.session.posts) == 1 and exc.value.retry_after == 1341
 
 
+def test_a_daily_limit_that_the_provider_says_frees_up_in_seconds_is_waited_for(tmp_path):
+    soon = DAILY.replace("22m21s", "21s")
+    ai, clock = make(tmp_path, Resp(429, text=soon), Resp(content='{"ok": 1}'))      # a rolling window: tokens free up as old use ages out
+    assert ai.call_json("t", "p") == {"ok": 1} and clock.sleeps == [21.0]
+
+
+GEMINI_DAILY = ('[{"error": {"code": 429, "message": "You exceeded your current quota, please check your plan and billing details.", '
+                '"details": [{"@type": "type.googleapis.com/google.rpc.QuotaFailure", "violations": [{"quotaId": '
+                '"GenerateRequestsPerDayPerProjectPerModel-FreeTier"}]}, {"@type": "type.googleapis.com/google.rpc.RetryInfo", '
+                '"retryDelay": "55357s"}]}}]')
+
+
+def test_geminis_wait_time_in_the_message_body_is_read_and_the_cooldown_is_capped(tmp_path):
+    fb, _ = make(tmp_path / "fb", Resp(content='{"from": "fallback"}'))
+    ai, clock = make(tmp_path / "main", Resp(429, text=GEMINI_DAILY), fallback=fb)
+    assert ai.call_json("t", "p") == {"from": "fallback"} and len(ai.session.posts) == 1
+    assert ai._down_until - clock.t == pytest.approx(llm.MAX_COOLDOWN, abs=5)          # it will not be back for 15 hours: but do re-check in 30 min
+    lone, _ = make(tmp_path / "lone", Resp(429, text=GEMINI_DAILY))
+    with pytest.raises(llm.LLMQuotaError, match="try again in 15 h 22 min") as exc:
+        lone.call_json("t", "p")
+    assert exc.value.retry_after == 55357
+
+
+def test_the_wait_time_is_read_from_a_header_a_json_field_or_a_sentence():
+    assert llm._retry_hint({"Retry-After": "7"}, "") == 7
+    assert llm._retry_hint({}, '"retryDelay": "55357s"') == 55357
+    assert llm._retry_hint({}, "Please try again in 2m40.704s.") == pytest.approx(160.704)
+    assert llm._retry_hint({}, "try again in 1h2m3s") == 3723 and llm._retry_hint({}, "nothing to read") is None
+
+
 def test_a_per_minute_limit_is_still_waited_out(tmp_path):
     ai, clock = make(tmp_path, Resp(429, headers={"Retry-After": "5"}, text=PER_MINUTE), Resp(content='{"ok": 1}'))
     assert ai.call_json("t", "p") == {"ok": 1} and clock.sleeps == [5.0]
